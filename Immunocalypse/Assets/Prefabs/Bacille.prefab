@@ -9,8 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6708707494559548880}
-  - component: {fileID: 9147157596371298496}
   - component: {fileID: 5315013739682345915}
+  - component: {fileID: 4899421454096834234}
+  - component: {fileID: 9147157596371298496}
+  - component: {fileID: 4201807422811564393}
   m_Layer: 0
   m_Name: Bacille
   m_TagString: Untagged
@@ -33,19 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9147157596371298496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2876211281056765373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79e3aebd4a57d2f9b91c17366cca7b64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
 --- !u!70 &5315013739682345915
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -62,6 +51,47 @@ CapsuleCollider2D:
   m_Offset: {x: -0.05, y: -0.05}
   m_Size: {x: 4, y: 1.2}
   m_Direction: 1
+--- !u!114 &4899421454096834234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2876211281056765373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb50c7f538a0ca94b7090b7190a4910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9147157596371298496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2876211281056765373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e3aebd4a57d2f9b91c17366cca7b64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  speedManger: 1
+  targetPosition: {x: 0, y: 0, z: 0}
+  targetObject: {fileID: 0}
+--- !u!114 &4201807422811564393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2876211281056765373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 087e11892f93a25108ab7461850a73d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myType: Bacteria
 --- !u!1 &9028259766063040813
 GameObject:
   m_ObjectHideFlags: 0

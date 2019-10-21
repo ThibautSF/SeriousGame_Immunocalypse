@@ -16,7 +16,7 @@ public class MoveSystem : FSystem {
 
 			Vector3 movement = Vector3.zero;
 
-			tr.position = Vector3.MoveTowards(tr.position, mv.target, mv.speed * Time.deltaTime);
+			tr.position = Vector3.MoveTowards(tr.position, mv.targetPosition, mv.speed * Time.deltaTime);
 
 			/*
 			Vector3 newDir = Vector3.RotateTowards(tr.forward, mv.target, mv.speed * Time.deltaTime, 0.0f);
@@ -25,7 +25,7 @@ public class MoveSystem : FSystem {
 			tr.rotation = Quaternion.LookRotation(newDir);
 			*/
 
-			Vector3 vectorToTarget = mv.target - tr.position;
+			Vector3 vectorToTarget = mv.targetPosition - tr.position;
 			Debug.DrawRay(tr.position, vectorToTarget, Color.red);
 
 			float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;

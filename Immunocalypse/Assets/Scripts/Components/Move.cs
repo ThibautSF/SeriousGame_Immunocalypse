@@ -5,5 +5,7 @@ public class Move : MonoBehaviour {
 	[HideInInspector]
 	public float speedManger = 1f;
 	[HideInInspector]
-	public Vector3 target;
+	public Vector3 targetPosition;
+	[HideInInspector]
+	public GameObject targetObject;
 }

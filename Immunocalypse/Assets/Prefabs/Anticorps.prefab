@@ -9,8 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4648882147811199506}
-  - component: {fileID: 1911893373518040676}
   - component: {fileID: 2431849795219395902}
+  - component: {fileID: 900823959755212847}
+  - component: {fileID: 1911893373518040676}
+  - component: {fileID: 5336193948328623546}
   m_Layer: 0
   m_Name: Anticorps
   m_TagString: Untagged
@@ -33,19 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1911893373518040676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5556641496832350401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79e3aebd4a57d2f9b91c17366cca7b64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2.5
 --- !u!70 &2431849795219395902
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -62,6 +51,48 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.02}
   m_Size: {x: 2, y: 1.7}
   m_Direction: 1
+--- !u!114 &900823959755212847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5556641496832350401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d3f2d973673c4e4f877b251e639a594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1911893373518040676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5556641496832350401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e3aebd4a57d2f9b91c17366cca7b64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2.5
+  speedManger: 1
+  targetPosition: {x: 0, y: 0, z: 0}
+  targetObject: {fileID: 0}
+--- !u!114 &5336193948328623546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5556641496832350401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a29b68e4342c0b1d390d7dc0f41a30e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myPreys:
+  - Virus
 --- !u!1 &5637961889834132410
 GameObject:
   m_ObjectHideFlags: 0
