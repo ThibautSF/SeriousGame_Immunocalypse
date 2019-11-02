@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Tilemaps;
 using FYFY;
 
 public class MoveSystem : FSystem {
@@ -6,10 +7,19 @@ public class MoveSystem : FSystem {
 		new AllOfComponents(typeof(Move))
 	);
 
+	//private Grid myMaps;
+	private GridMap myMaps;
+
 	public MoveSystem() {
+		Grid grid = Object.FindObjectOfType<Grid>();
+
+		if (grid != null) {
+			myMaps.GetComponent<GridMap>();
+		}
 	}
 
 	protected override void onProcess(int familiesUpdateCount) {
+
 		foreach (GameObject go in _randomMovingGO) {
 			Transform tr = go.GetComponent<Transform>();
 			Move mv = go.GetComponent<Move>();
@@ -33,5 +43,13 @@ public class MoveSystem : FSystem {
 			tr.rotation = Quaternion.RotateTowards(tr.rotation, qt, Time.deltaTime * mv.speed * 100);
 
 		}
+	}
+
+	private TileBase getCell(Tilemap tilemap, Vector2 worldPos) {
+		return tilemap.GetTile(tilemap.WorldToCell(worldPos));
+	}
+
+	private bool hasTile(Tilemap tilemap, Vector2 worldPos) {
+		return tilemap.HasTile(tilemap.WorldToCell(worldPos));
 	}
 }
