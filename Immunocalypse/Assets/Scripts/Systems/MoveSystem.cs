@@ -9,7 +9,6 @@ public class MoveSystem : FSystem {
 		new AllOfComponents(typeof(Move))
 	);
 
-	//private Grid myMaps;
 	private GridMap myMaps;
 
 	public MoveSystem() {
@@ -26,14 +25,7 @@ public class MoveSystem : FSystem {
 			Transform tr = go.GetComponent<Transform>();
 			Move mv = go.GetComponent<Move>();
 
-			Vector2 movement = Vector2.zero;
-			
-			/* *
-			Vector3 target = mv.targetPosition;
-			if (mv.path.Count > 0) {
-				target = mv.path[0];
-			}
-			/* */
+			//Get next target
 			Vector3 target = mv.path[0];
 			printPath(go);
 			
@@ -48,6 +40,7 @@ public class MoveSystem : FSystem {
 			float modifiers = getSpeedModifier(tr.position);
 			tr.position = Vector2.MoveTowards(tr.position, target, mv.speed * modifiers * Time.deltaTime);
 
+			//Clean target if reached
 			if (tr.position == target) {
 				if (mv.path.Count > 0) {
 					mv.path.RemoveAt(0);

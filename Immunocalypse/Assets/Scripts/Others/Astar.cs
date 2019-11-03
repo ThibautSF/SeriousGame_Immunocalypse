@@ -6,6 +6,7 @@ using UnityEngine.Tilemaps;
 
 //https://github.com/davecusatis/A-Star-Sharp/blob/master/Astar.cs
 //https://bitbucket.org/Unity-Technologies/2ddemos/src/b7a77d0313513fe8c5eaafc77bfba10e7650281c/PreviewR401/Assets/Scripts/Player/WalkableTilePathfinding.cs?at=PreviewR401&fileviewer=file-view-default
+//https://stackoverflow.com/questions/6661169/finding-adjacent-neighbors-on-a-hexagonal-grid
 
 public class Astar {
     private List<Tilemap> tilemaps;
@@ -58,16 +59,6 @@ public class Astar {
             open.Remove(current);
             close.Add(current);
             neighbors = getNeighbors(current);
-            
-            /* *
-            foreach (Node n in neighbors) {
-                Debug.Log(n.cell);
-            }
-            /* *
-            Debug.Log(neighbors.Count);
-            Debug.Log(current.cell.ToString() + " : " + neighbors.ToString());
-            //return path;
-            /* */
 
             foreach (Node n in neighbors) {
                 if (!close.Exists(x => x.cell == n.cell) && n.walkable) {
@@ -126,7 +117,6 @@ public class Astar {
 
     private List<Node> getNeighbors(Node n) {
         List<Node> neighbors = new List<Node>();
-        //string s = n.cell.ToString() + " : ";
 
         Vector3Int[] directions;
 
@@ -142,15 +132,11 @@ public class Astar {
             for (int i = tilemaps.Count - 1; i >= 0 ; i--) {
                 if (tilemaps[i].HasTile(tilePosition)) {
                     neighbors.Add(new Node(tilePosition, getCost(tilemaps[i], tilePosition)));
-                    //s += tilePosition.ToString() + ", ";
-                    //tilemaps[i].SetTile(tilePosition, null);
                     break;
                 }
             }
         }
-
-        //Debug.Log(s);
-
+        
         return neighbors;
     }
 
