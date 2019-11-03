@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Tilemaps;
 using FYFY;
 
@@ -26,8 +28,17 @@ public class MoveSystem : FSystem {
 
 			Vector2 movement = Vector2.zero;
 			
+			/* *
+			Vector3 target = mv.targetPosition;
+			if (mv.path.Count > 0) {
+				target = mv.path[0];
+			}
+			/* */
+			Vector3 target = mv.path[0];
+			printPath(go);
+			
 			//Look at direction
-			Vector2 vectorToTarget = mv.targetPosition - tr.position;
+			Vector2 vectorToTarget = target - tr.position;
 			Debug.DrawRay(tr.position, vectorToTarget, Color.red);
 			float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
 			Quaternion qt = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -35,11 +46,17 @@ public class MoveSystem : FSystem {
 			
 			//Move
 			float modifiers = getSpeedModifier(tr.position);
-			tr.position = Vector2.MoveTowards(tr.position, mv.targetPosition, mv.speed * modifiers * Time.deltaTime);
+			tr.position = Vector2.MoveTowards(tr.position, target, mv.speed * modifiers * Time.deltaTime);
+
+			if (tr.position == target) {
+				if (mv.path.Count > 0) {
+					mv.path.RemoveAt(0);
+				}
+			}
 		}
 	}
 
-	private TileBase getCell(Tilemap tilemap, Vector2 worldPos) {
+	private TileBase getTile(Tilemap tilemap, Vector2 worldPos) {
 		return tilemap.GetTile(tilemap.WorldToCell(worldPos));
 	}
 
@@ -58,5 +75,17 @@ public class MoveSystem : FSystem {
 		}
 
 		return sm;
+	}
+
+	private void printPath(GameObject go) {
+		Transform tr = go.GetComponent<Transform>();
+		Move mv = go.GetComponent<Move>();
+
+		Vector3 lastStep = tr.position;
+		for (int i = 0; i < mv.path.Count; i++){
+			Debug.DrawLine(lastStep, mv.path[i], (i%2==0) ? Color.green : Color.white);
+					
+			lastStep = mv.path[i];
+		}
 	}
 }

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using FYFY;
 
 public class TargetingSystem : FSystem {
@@ -8,11 +10,19 @@ public class TargetingSystem : FSystem {
 	private Family _preysGO = FamilyManager.getFamily(
 		new AllOfComponents(typeof(Prey))
 	);
+	private GridMap myMaps;
 
 	public TargetingSystem() {
+		Grid grid = Object.FindObjectOfType<Grid>();
+
+		if (grid != null) {
+			myMaps = grid.GetComponent<GridMap>();
+		}
+
 		/* */
 		foreach (GameObject go in _randomMovingGO) {
 			updateTarget(go);
+			updatePath(go);
 		}
 		/* */
 
@@ -71,6 +81,34 @@ public class TargetingSystem : FSystem {
 		mv.targetObject = target;
 	}
 
+	private void updatePath(GameObject go) {
+		Transform tr = go.GetComponent<Transform>();
+		Move mv = go.GetComponent<Move>();
+
+		Astar a = new Astar(myMaps.myTileMaps);
+		Stack<Vector3Int> path = a.findPath(tr.position, mv.targetPosition);
+		
+		Vector3 lastCellWorldPos = tr.position;
+		string s = "[" + myMaps.myTileMaps[0].WorldToCell(lastCellWorldPos).ToString() + "]";
+		mv.path = new List<Vector3>();
+
+		int i = 0;
+		foreach (Vector3Int cell in path) {
+			Vector3 cellWorldPos = myMaps.myTileMaps[0].CellToWorld(cell);
+			mv.path.Add(cellWorldPos);
+			Debug.DrawLine(lastCellWorldPos, cellWorldPos, (i%2==0) ? Color.green : Color.white);
+					
+			lastCellWorldPos = cellWorldPos;
+			s += " -> " + cell.ToString();
+			i++;
+		}
+
+		mv.path.Add(mv.targetPosition);
+		s += " | [" + myMaps.myTileMaps[0].WorldToCell(mv.targetPosition).ToString() + "]";
+
+		Debug.Log(s);
+	}
+
 	protected override void onProcess(int familiesUpdateCount) {
 		foreach (GameObject go in _randomMovingGO) {
 			Transform tr = go.GetComponent<Transform>();
@@ -78,10 +116,12 @@ public class TargetingSystem : FSystem {
 
 			if (mv.targetObject != null) {
 				mv.targetPosition = mv.targetObject.transform.position;
+				updatePath(go);
 			}
 
 			if (mv.targetPosition == tr.position) {
 				updateTarget(go);
+				updatePath(go);
 			}
 		}
 	}
