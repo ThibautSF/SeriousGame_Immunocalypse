@@ -60,10 +60,12 @@ public class MoveSystem : FSystem {
 	private float getSpeedModifier(Vector2 worldPos) {
 		float sm = 1f;
 
-		for (int i = myMaps.myTileMaps.Count - 1; i >= 0 ; i--) {
-			if (hasTile(myMaps.myTileMaps[i], worldPos)) {
-				sm *= myMaps.myTileMaps[i].GetComponent<MapLayer>().speedBonus;
-				break;
+		if (myMaps != null) {
+			for (int i = myMaps.myTileMaps.Count - 1; i >= 0 ; i--) {
+				if (hasTile(myMaps.myTileMaps[i], worldPos)) {
+					sm *= myMaps.myTileMaps[i].GetComponent<MapLayer>().speedBonus;
+					break;
+				}
 			}
 		}
 

@@ -29,13 +29,49 @@ public class TargetingSystem : FSystem {
 		_randomMovingGO.addEntryCallback(updateTarget);
 	}
 
+	private GameObject seekTarget(GameObject go) {
+		Transform tr = go.GetComponent<Transform>();
+		Collider2D[] colliders = Physics2D.OverlapCircleAll(tr.position, 50f);
+		Predator predator = go.GetComponent<Predator>();
+		GameObject closestTarget = null;
+
+		if (colliders.Length > 0) {
+			float minDist = Mathf.Infinity;
+			minDist = 5f;
+			foreach (Collider2D collider in colliders) {
+				GameObject collidedGO = collider.gameObject;
+
+				if (collidedGO == go) {
+					continue;
+				} else if (predator != null) {
+					if (_preysGO.contains(collidedGO.GetInstanceID())) {
+						Transform collidedTr = collidedGO.GetComponent<Transform>();
+						Prey prey = collidedGO.GetComponent<Prey>();
+
+						if (predator.myPreys.Contains(prey.myType)) {
+							float dist = Vector3.Distance(collidedTr.position, tr.position);
+							if (dist < minDist) {
+								minDist = dist;
+								closestTarget = collidedGO;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return closestTarget;
+	}
+
 	private void updateTarget(GameObject go) {
+		//TODO clean code duplicated in seekTarget 
 		Transform tr = go.GetComponent<Transform>();
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(tr.position, 50f);
 		Predator predator = go.GetComponent<Predator>();
 
 		if (colliders.Length > 0) {
 			float minDist = Mathf.Infinity;
+			minDist = 5f;
 			GameObject closestTarget = null;
 			foreach (Collider2D collider in colliders) {
 				GameObject collidedGO = collider.gameObject;
@@ -85,34 +121,43 @@ public class TargetingSystem : FSystem {
 		Transform tr = go.GetComponent<Transform>();
 		Move mv = go.GetComponent<Move>();
 
-		Astar a = new Astar(myMaps.myTileMaps);
-		Stack<Vector3Int> path = a.findPath(tr.position, mv.targetPosition);
-		
-		Vector3 lastCellWorldPos = tr.position;
-		string s = "[" + myMaps.myTileMaps[0].WorldToCell(lastCellWorldPos).ToString() + "]";
 		mv.path = new List<Vector3>();
+		
+		if (myMaps != null) {
+			Astar a = new Astar(myMaps.myTileMaps);
+			Stack<Vector3Int> path = a.findPath(tr.position, mv.targetPosition);
+			
+			Vector3 lastCellWorldPos = tr.position;
+			string s = "[" + myMaps.myTileMaps[0].WorldToCell(lastCellWorldPos).ToString() + "]";
 
-		int i = 0;
-		foreach (Vector3Int cell in path) {
-			Vector3 cellWorldPos = myMaps.myTileMaps[0].CellToWorld(cell);
-			mv.path.Add(cellWorldPos);
-			Debug.DrawLine(lastCellWorldPos, cellWorldPos, (i%2==0) ? Color.green : Color.white);
-					
-			lastCellWorldPos = cellWorldPos;
-			s += " -> " + cell.ToString();
-			i++;
+			int i = 0;
+			foreach (Vector3Int cell in path) {
+				Vector3 cellWorldPos = myMaps.myTileMaps[0].CellToWorld(cell);
+				mv.path.Add(cellWorldPos);
+				Debug.DrawLine(lastCellWorldPos, cellWorldPos, (i%2==0) ? Color.green : Color.white);
+						
+				lastCellWorldPos = cellWorldPos;
+				s += " -> " + cell.ToString();
+				i++;
+			}
+
+			s += " | [" + myMaps.myTileMaps[0].WorldToCell(mv.targetPosition).ToString() + "]";
+
+			Debug.Log(s);
 		}
 
 		mv.path.Add(mv.targetPosition);
-		s += " | [" + myMaps.myTileMaps[0].WorldToCell(mv.targetPosition).ToString() + "]";
-
-		Debug.Log(s);
 	}
 
 	protected override void onProcess(int familiesUpdateCount) {
 		foreach (GameObject go in _randomMovingGO) {
 			Transform tr = go.GetComponent<Transform>();
 			Move mv = go.GetComponent<Move>();
+
+			GameObject targetSeeked = seekTarget(go);
+			if (mv.targetObject == null || mv.targetObject != seekTarget(go)) {
+				mv.targetObject = targetSeeked;
+			}
 
 			if (mv.targetObject != null) {
 				mv.targetPosition = mv.targetObject.transform.position;
