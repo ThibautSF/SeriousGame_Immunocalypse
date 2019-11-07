@@ -7,9 +7,10 @@ using UnityEngine.Tilemaps;
 //https://github.com/davecusatis/A-Star-Sharp/blob/master/Astar.cs
 //https://bitbucket.org/Unity-Technologies/2ddemos/src/b7a77d0313513fe8c5eaafc77bfba10e7650281c/PreviewR401/Assets/Scripts/Player/WalkableTilePathfinding.cs?at=PreviewR401&fileviewer=file-view-default
 //https://stackoverflow.com/questions/6661169/finding-adjacent-neighbors-on-a-hexagonal-grid
+//https://www.redblobgames.com/grids/hexagons/
 
 public class Astar {
-    private List<Tilemap> tilemaps;
+    private List<MyTilemap> tilemaps;
 
     Vector3Int[] neighbor_directions_yeven = new Vector3Int[6]{
         new Vector3Int(-1, -1, 0),
@@ -29,20 +30,18 @@ public class Astar {
         new Vector3Int(1, 1, 0),
 	};
 
-    public Astar(List<Tilemap> gs) {
+    public Astar(List<MyTilemap> gs) {
         this.tilemaps = gs;
     }
 
-    public Astar(Tilemap g) {
-        this.tilemaps = new List<Tilemap>();
+    public Astar(MyTilemap g) {
+        this.tilemaps = new List<MyTilemap>();
         this.tilemaps.Add(g);
     }
 
-    public Stack<Vector3Int> findPath(Vector2 start, Vector2 end) {
-        Vector3Int startCell = getCell(start);
-        Node startNode = new Node(startCell, getCostTop(startCell));
-        Vector3Int endCell = getCell(end);
-        Node endNode = new Node(endCell, getCostTop(endCell));
+    public Stack<Vector3Int> FindPath(Vector2 start, Vector2 end) {
+        Node startNode = GetNode(start);
+        Node endNode = GetNode(end);
         
         Stack<Vector3Int> path = new Stack<Vector3Int>();
 
@@ -58,7 +57,7 @@ public class Astar {
             current = open[0];
             open.Remove(current);
             close.Add(current);
-            neighbors = getNeighbors(current);
+            neighbors = GetNeighbors(current);
 
             foreach (Node n in neighbors) {
                 if (!close.Exists(x => x.cell == n.cell) && n.walkable) {
@@ -87,27 +86,48 @@ public class Astar {
 
         return path;
     }
+    
+    private Node GetNode(Vector2 pos) {
+        float cost = Mathf.Infinity;
+        Node node = null;
 
-    private Vector3Int getCell(Vector2 pos) {
-        return tilemaps[0].WorldToCell(pos);
+        for (int i = tilemaps.Count - 1; i >= 0 ; i--) {
+            Tilemap map = tilemaps[i].GetTilemap();
+            Vector3Int cell = map.WorldToCell(pos);
+
+            if (map.HasTile(cell)) {
+                cost = GetCost(tilemaps[i], cell);
+                node = new Node(map, cell, cost);
+                break;
+            } else {
+                node = new Node(null, cell, cost);
+            }
+        }
+
+        return node;
     }
 
-    private float getCostTop(Vector3Int cell) {
+    private float GetCost(MyTilemap tilemap, Vector3Int cell) {
         float cost = Mathf.Infinity;
-        for (int i = tilemaps.Count - 1; i >= 0 ; i--) {
-            if (tilemaps[i].HasTile(cell)) {
-                cost = getCost(tilemaps[i], cell);
-                break;
+        
+        if (tilemap.HasMapLayer()) {
+            float sb = tilemap.GetMapLayer().speedBonus;
+            if (sb!=0) {
+                cost = 1/sb;
             }
+        } else {
+            cost = 1f;
         }
 
         return cost;
     }
 
-    private float getCost(Tilemap tilemap, Vector3Int cell) {
+    private float GetCost(MyTilemap tilemap, Vector3Int directionVector, Transform pt1, Transform pt2) {
         float cost = Mathf.Infinity;
-        
-        float sb = tilemap.GetComponent<MapLayer>().speedBonus;
+
+        Vector3 vector = tilemap.GetTilemap().CellToWorld(directionVector);
+
+        float sb = tilemap.GetBonusMalus(tilemap, vector, pt1, pt2);
         if (sb!=0) {
             cost = 1/sb;
         }
@@ -115,7 +135,7 @@ public class Astar {
         return cost;
     }
 
-    private List<Node> getNeighbors(Node n) {
+    private List<Node> GetNeighbors(Node n) {
         List<Node> neighbors = new List<Node>();
 
         Vector3Int[] directions;
@@ -127,11 +147,30 @@ public class Astar {
         }
 
         foreach (Vector3Int direction in directions) {
+            float cost = Mathf.Infinity;
             Vector3Int tilePosition = new Vector3Int(n.cell.x + direction.x, n.cell.y + direction.y, n.cell.z + direction.z);
 
             for (int i = tilemaps.Count - 1; i >= 0 ; i--) {
-                if (tilemaps[i].HasTile(tilePosition)) {
-                    neighbors.Add(new Node(tilePosition, getCost(tilemaps[i], tilePosition)));
+                Tilemap map = tilemaps[i].GetTilemap();
+
+                if (map.HasTile(tilePosition)) {
+                    if (n.myMap == map && tilemaps[i].HasMapLayer()) {
+                        MapLayer layer = tilemaps[i].GetMapLayer();
+
+                        List<Transform> points = layer.flux.fluxPosis;
+                        for (int j = 0; j < points.Count - 1; j++) {
+                            if (tilemaps[i].IsBetween(tilemaps[i].GetTilemap().CellToWorld(n.cell), points[j], points[j+1])) {
+                                cost = GetCost(tilemaps[i], direction, points[j], points[j+1]);
+                                break;
+                            }
+                        }
+                    }
+
+                    if (cost == Mathf.Infinity) {
+                        cost = GetCost(tilemaps[i], tilePosition);
+                    }
+
+                    neighbors.Add(new Node(map, tilePosition, cost));
                     break;
                 }
             }
@@ -142,6 +181,7 @@ public class Astar {
 
     public class Node {
         public Node parent;
+        public Tilemap myMap;
         public Vector3Int cell;
         public float distance;
         public float cost;
@@ -156,18 +196,19 @@ public class Astar {
 
         public bool walkable;
 
-        public Node(Vector3Int pos, float cost) {
-            init(pos, cost);
+        public Node(Tilemap map, Vector3Int pos, float cost) {
+            init(map, pos, cost);
             this.walkable = true;
         }
 
-        public Node(Vector3Int pos, float cost, bool walkable) {
-           init(pos, cost);
+        public Node(Tilemap map, Vector3Int pos, float cost, bool walkable) {
+           init(map, pos, cost);
            this.walkable = walkable;
         }
 
-        private void init(Vector3Int pos, float cost) {
+        private void init(Tilemap map, Vector3Int pos, float cost) {
             this.parent = null;
+            this.myMap = map;
             this.cell = pos;
             this.distance = -1;
             this.cost = cost;

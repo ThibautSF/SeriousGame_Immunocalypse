@@ -37,7 +37,7 @@ public class MoveSystem : FSystem {
 			tr.rotation = Quaternion.RotateTowards(tr.rotation, qt, Time.deltaTime * mv.speed * 100);
 			
 			//Move
-			float modifiers = getSpeedModifier(tr.position);
+			float modifiers = getSpeedModifier(tr.position, vectorToTarget);
 			tr.position = Vector2.MoveTowards(tr.position, target, mv.speed * modifiers * Time.deltaTime);
 
 			//Clean target if reached
@@ -57,13 +57,27 @@ public class MoveSystem : FSystem {
 		return tilemap.HasTile(tilemap.WorldToCell(worldPos));
 	}
 
-	private float getSpeedModifier(Vector2 worldPos) {
+	private float getSpeedModifier(Vector2 worldPos, Vector2 vectorToTarget) {
 		float sm = 1f;
 
 		if (myMaps != null) {
 			for (int i = myMaps.myTileMaps.Count - 1; i >= 0 ; i--) {
 				if (hasTile(myMaps.myTileMaps[i], worldPos)) {
-					sm *= myMaps.myTileMaps[i].GetComponent<MapLayer>().speedBonus;
+					MyTilemap tm = new MyTilemap(myMaps.myTileMaps[i], myMaps.myTileMaps[i].GetComponent<MapLayer>());
+
+					if (tm.HasMapLayer()) {
+						MapLayer layer = tm.GetMapLayer();
+						
+						List<Transform> points = layer.flux.fluxPosis;
+						
+						for (int j = 0; j < points.Count - 1; j++) {
+							if (tm.IsBetween(worldPos, points[j], points[j+1])) {
+								sm *= tm.GetBonusMalus(tm, vectorToTarget, points[j], points[j+1]);
+								break;
+							}
+						}
+					}
+
 					break;
 				}
 			}

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using FYFY;
 
 public class TargetingSystem : FSystem {
@@ -124,8 +125,14 @@ public class TargetingSystem : FSystem {
 		mv.path = new List<Vector3>();
 		
 		if (myMaps != null) {
-			Astar a = new Astar(myMaps.myTileMaps);
-			Stack<Vector3Int> path = a.findPath(tr.position, mv.targetPosition);
+			List<MyTilemap> maps = new List<MyTilemap>();
+
+			foreach (Tilemap tm in myMaps.myTileMaps) {
+				maps.Add(new MyTilemap(tm, tm.GetComponent<MapLayer>()));
+			}
+
+			Astar a = new Astar(maps);
+			Stack<Vector3Int> path = a.FindPath(tr.position, mv.targetPosition);
 			
 			Vector3 lastCellWorldPos = tr.position;
 			string s = "[" + myMaps.myTileMaps[0].WorldToCell(lastCellWorldPos).ToString() + "]";
