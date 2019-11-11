@@ -40,16 +40,17 @@ public class MyTilemap {
         Vector3 a = pt1.position;
         Vector3 b = pt2.position;
 
-        //((yb-ya)(x)+(xb-xa)(y))
-        float f = (b.y - a.y) * directionVector.x + (b.x - a.y) * directionVector.y;
+        //((yb-ya)(y)+(xb-xa)(x))
+        float f = (b.x - a.x) * directionVector.x + (b.y - a.y) * directionVector.y;
 
         if (tilemap.HasMapLayer()) {
             bonusmalus = tilemap.GetMapLayer().speedBonus;
 
-            if (f > 0) {
+            if (f <= 0) {
                 bonusmalus = tilemap.GetMapLayer().flux.speedMalus;
+                Debug.Log("Le vecteur " + directionVector + " dans le flux de A(" + a + ") à B(" + b + ") est contre courant : " + f );
             } else {
-                Debug.Log("courant");
+                Debug.Log("Le vecteur " + directionVector + " dans le flux de A(" + a + ") à B(" + b + ") est en courant : " + f);
             }
         }
 

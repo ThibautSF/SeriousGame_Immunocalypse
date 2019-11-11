@@ -101,7 +101,7 @@ public class TargetingSystem : FSystem {
 			}
 		}
 
-		updateTarget(go, new Vector3((Random.value - 0.5f) * 14f, (Random.value - 0.5f) * 10f));
+		updateTarget(go, new Vector3((Random.value - 0.5f) * 28f, (Random.value - 0.5f) * 20f));
 	}
 
 	private void updateTarget(GameObject go, Vector3 target) {

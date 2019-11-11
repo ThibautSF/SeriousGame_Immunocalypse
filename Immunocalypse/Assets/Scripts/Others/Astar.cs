@@ -122,12 +122,12 @@ public class Astar {
         return cost;
     }
 
-    private float GetCost(MyTilemap tilemap, Vector3Int directionVector, Transform pt1, Transform pt2) {
+    private float GetCost(MyTilemap tilemap, Vector3 directionVector, Transform pt1, Transform pt2) {
         float cost = Mathf.Infinity;
 
-        Vector3 vector = tilemap.GetTilemap().CellToWorld(directionVector);
+        //Vector3 vector = tilemap.GetTilemap().CellToWorld(directionVector);
 
-        float sb = tilemap.GetBonusMalus(tilemap, vector, pt1, pt2);
+        float sb = tilemap.GetBonusMalus(tilemap, directionVector, pt1, pt2);
         if (sb!=0) {
             cost = 1/sb;
         }
@@ -160,7 +160,11 @@ public class Astar {
                         List<Transform> points = layer.flux.fluxPosis;
                         for (int j = 0; j < points.Count - 1; j++) {
                             if (tilemaps[i].IsBetween(tilemaps[i].GetTilemap().CellToWorld(n.cell), points[j], points[j+1])) {
-                                cost = GetCost(tilemaps[i], direction, points[j], points[j+1]);
+                                Debug.Log(tilemaps[i].GetTilemap().CellToWorld(n.cell) + " is between " + points[j] + " and "+ points[j+1]);
+
+                                Vector3 directionVector = tilemaps[i].GetTilemap().CellToWorld(tilePosition) - tilemaps[i].GetTilemap().CellToWorld(n.cell);
+
+                                cost = GetCost(tilemaps[i], directionVector, points[j], points[j+1]);
                                 break;
                             }
                         }
