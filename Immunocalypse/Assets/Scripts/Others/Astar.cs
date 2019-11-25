@@ -19,7 +19,7 @@ public class Astar {
         new Vector3Int(1, 0, 0),
         new Vector3Int(-1, 1, 0),
         new Vector3Int(0, 1, 0),
-	};
+    };
 
     Vector3Int[] neighbor_directions_yodd = new Vector3Int[6]{
         new Vector3Int(0, -1, 0),
@@ -28,7 +28,7 @@ public class Astar {
         new Vector3Int(1, 0, 0),
         new Vector3Int(0, 1, 0),
         new Vector3Int(1, 1, 0),
-	};
+    };
 
     public Astar(List<MyTilemap> gs) {
         this.tilemaps = gs;
@@ -160,7 +160,7 @@ public class Astar {
                         List<Transform> points = layer.flux.fluxPosis;
                         for (int j = 0; j < points.Count - 1; j++) {
                             if (tilemaps[i].IsBetween(tilemaps[i].GetTilemap().CellToWorld(n.cell), points[j], points[j+1])) {
-                                Debug.Log(tilemaps[i].GetTilemap().CellToWorld(n.cell) + " is between " + points[j] + " and "+ points[j+1]);
+                                //Debug.Log(tilemaps[i].GetTilemap().CellToWorld(n.cell) + " is between " + points[j] + " and "+ points[j+1]);
 
                                 Vector3 directionVector = tilemaps[i].GetTilemap().CellToWorld(tilePosition) - tilemaps[i].GetTilemap().CellToWorld(n.cell);
 

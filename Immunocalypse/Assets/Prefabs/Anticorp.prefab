@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1911893373518040676}
   - component: {fileID: 5336193948328623546}
   m_Layer: 0
-  m_Name: Anticorps
+  m_Name: Anticorp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,6 +79,7 @@ MonoBehaviour:
   speedManger: 1
   targetPosition: {x: 0, y: 0, z: 0}
   targetObject: {fileID: 0}
+  path: []
 --- !u!114 &5336193948328623546
 MonoBehaviour:
   m_ObjectHideFlags: 0

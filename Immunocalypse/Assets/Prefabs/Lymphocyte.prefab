@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 8399460144681037728}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 176223730117397247}
   m_RootOrder: 0
@@ -90,6 +90,9 @@ GameObject:
   m_Component:
   - component: {fileID: 176223730117397247}
   - component: {fileID: 900617569531361357}
+  - component: {fileID: 2596167432376935937}
+  - component: {fileID: 3637164067226369523}
+  - component: {fileID: 6281042736320014433}
   m_Layer: 0
   m_Name: Lymphocyte
   m_TagString: Untagged
@@ -127,4 +130,48 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 4
+  m_Radius: 0.5
+--- !u!114 &2596167432376935937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8952695840164657680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e66a8f02fb8859eb1dce2c1099a02f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3637164067226369523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8952695840164657680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e3aebd4a57d2f9b91c17366cca7b64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2.5
+  speedManger: 1
+  targetPosition: {x: 0, y: 0, z: 0}
+  targetObject: {fileID: 0}
+  path: []
+--- !u!114 &6281042736320014433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8952695840164657680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adf79c4af892eeb25b947cd050d66c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reloadTime: 1
+  reloadProgress: 0
+  prefab: {fileID: 1450122561964289412, guid: 7368d3dd7ec4a0ab0865ad3bd4596b46, type: 3}

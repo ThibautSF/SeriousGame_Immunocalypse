@@ -48,9 +48,9 @@ public class MyTilemap {
 
             if (f <= 0) {
                 bonusmalus = tilemap.GetMapLayer().flux.speedMalus;
-                Debug.Log("Le vecteur " + directionVector + " dans le flux de A(" + a + ") à B(" + b + ") est contre courant : " + f );
+                //Debug.Log("Le vecteur " + directionVector + " dans le flux de A(" + a + ") à B(" + b + ") est contre courant : " + f );
             } else {
-                Debug.Log("Le vecteur " + directionVector + " dans le flux de A(" + a + ") à B(" + b + ") est en courant : " + f);
+                //Debug.Log("Le vecteur " + directionVector + " dans le flux de A(" + a + ") à B(" + b + ") est en courant : " + f);
             }
         }
 
