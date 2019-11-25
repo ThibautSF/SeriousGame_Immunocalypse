@@ -1,8 +1,37 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
 using FYFY;
 
 public class ButtonSystem : FSystem {
+
+	private Family _panelGO = FamilyManager.getFamily(
+		new AllOfComponents(typeof(ListMenu))
+	);
+
+	private void changeActiveMenus(string menuToSetActive) {
+		List<GameObject> go = _panelGO.First().GetComponent<ListMenu>().listMenus;
+		foreach (GameObject menuPanel in go) {
+			if (menuPanel.name == menuToSetActive) {
+				menuPanel.SetActive(true);
+			} else {
+				menuPanel.SetActive(false);
+			}
+		}
+	}
+
+	public void openPlayMenu() {
+		changeActiveMenus("playMenu");
+	}
+
+	public void openCreditsMenu() {
+		changeActiveMenus("creditsMenu");
+	}
+
+	public void backToMainMenu() {
+		changeActiveMenus("MainMenu");
+	}
 
 	public void exitGame() {
 		Application.Quit();
@@ -12,7 +41,11 @@ public class ButtonSystem : FSystem {
 		SceneManager.LoadScene("SampleScene");
 	}
 
-	// Use this to update member variables when system pause. 
+
+
+	// public void
+
+	// Use this to update member variables when system pause.
 	// Advice: avoid to update your families inside this function.
 	protected override void onPause(int currentFrame) {
 	}
