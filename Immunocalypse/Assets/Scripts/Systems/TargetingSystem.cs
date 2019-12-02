@@ -150,7 +150,7 @@ public class TargetingSystem : FSystem {
 
 			s += " | [" + myMaps.myTileMaps[0].WorldToCell(mv.targetPosition).ToString() + "]";
 
-			Debug.Log(s);
+			//Debug.Log(s);
 		}
 
 		mv.path.Add(mv.targetPosition);

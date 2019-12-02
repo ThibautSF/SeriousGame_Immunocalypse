@@ -37,7 +37,7 @@ public class MoveSystem : FSystem {
 			tr.rotation = Quaternion.RotateTowards(tr.rotation, qt, Time.deltaTime * mv.speed * 100);
 			
 			//Move
-			float modifiers = getSpeedModifier(tr.position, vectorToTarget);
+			float modifiers = getSpeedModifiers(go, tr.position, vectorToTarget);
 			tr.position = Vector2.MoveTowards(tr.position, target, mv.speed * modifiers * Time.deltaTime);
 
 			//Clean target if reached
@@ -57,9 +57,10 @@ public class MoveSystem : FSystem {
 		return tilemap.HasTile(tilemap.WorldToCell(worldPos));
 	}
 
-	private float getSpeedModifier(Vector2 worldPos, Vector2 vectorToTarget) {
+	private float getSpeedModifiers(GameObject go, Vector2 worldPos, Vector2 vectorToTarget) {
 		float sm = 1f;
 
+		//Get the speed modifer from map
 		if (myMaps != null) {
 			for (int i = myMaps.myTileMaps.Count - 1; i >= 0 ; i--) {
 				if (hasTile(myMaps.myTileMaps[i], worldPos)) {
@@ -80,6 +81,17 @@ public class MoveSystem : FSystem {
 
 					break;
 				}
+			}
+		}
+
+		Move mv = go.GetComponent<Move>();
+
+		for (int i = mv.speedModifiers.Count - 1; i >= 0; i--) {
+			mv.speedModifiers[i].decrement(Time.deltaTime);
+			sm *= mv.speedModifiers[i].getModifier();
+
+			if (!mv.speedModifiers[i].isValid()) {
+				mv.speedModifiers.RemoveAt(i);
 			}
 		}
 

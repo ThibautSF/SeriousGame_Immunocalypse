@@ -12,4 +12,7 @@ public class Move : MonoBehaviour {
 	public GameObject targetObject;
 	[HideInInspector]
 	public List<Vector3> path = new List<Vector3>();
+
+	[HideInInspector]
+	public List<SpeedModifier> speedModifiers = new List<SpeedModifier>();
 }

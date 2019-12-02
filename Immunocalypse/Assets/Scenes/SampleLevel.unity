@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 129450827}
   - component: {fileID: 129450828}
   - component: {fileID: 129450829}
+  - component: {fileID: 129450830}
   m_Layer: 0
   m_Name: Main_Loop
   m_TagString: Untagged
@@ -179,6 +180,10 @@ MonoBehaviour:
   - _typeAssemblyQualifiedName: TargetingSystem, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
     _typeFullName: TargetingSystem
+    _pause: 0
+  - _typeAssemblyQualifiedName: BlockingSystem, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    _typeFullName: BlockingSystem
     _pause: 0
   - _typeAssemblyQualifiedName: MoveSystem, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
@@ -259,6 +264,97 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11d972bc43d07abe08c257d25c7863f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &129450830
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129450822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce7c4571c7dbc85879af2fc01659ae13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &163072032
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8952695840164657680, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_Name
+      value: Lymphocyte (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6281042736320014433, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: reloadTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2596167432376935937, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: antibodiesDrift
+      value: 
+      objectReference: {fileID: 1506780018}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fb0b80d35f11620c3a5222598a3def60, type: 3}
 --- !u!114 &187948148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,6 +389,85 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 3
   m_ColliderType: 1
+--- !u!1001 &357734922
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8952695840164657680, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_Name
+      value: Lymphocyte (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6281042736320014433, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: reloadTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2596167432376935937, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: antibodiesDrift
+      value: 
+      objectReference: {fileID: 1506780018}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fb0b80d35f11620c3a5222598a3def60, type: 3}
 --- !u!1 &389139252
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,6 +505,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8952695840164657680, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_Name
+      value: Lymphocyte
+      objectReference: {fileID: 0}
     - target: {fileID: 6281042736320014433, guid: fb0b80d35f11620c3a5222598a3def60,
         type: 3}
       propertyPath: reloadTime
@@ -340,11 +520,6 @@ PrefabInstance:
       propertyPath: antibodiesDrift
       value: 
       objectReference: {fileID: 1506780018}
-    - target: {fileID: 8952695840164657680, guid: fb0b80d35f11620c3a5222598a3def60,
-        type: 3}
-      propertyPath: m_Name
-      value: Lymphocyte
-      objectReference: {fileID: 0}
     - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -383,7 +558,7 @@ PrefabInstance:
     - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
         type: 3}
@@ -16222,6 +16397,75 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 3
   m_ColliderType: 1
+--- !u!1001 &803269291
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5828499375310798995, guid: 38ee6858026e03854b792cdc22482a52,
+        type: 3}
+      propertyPath: m_Name
+      value: Virus
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383394970930885401, guid: 38ee6858026e03854b792cdc22482a52,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383394970930885401, guid: 38ee6858026e03854b792cdc22482a52,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383394970930885401, guid: 38ee6858026e03854b792cdc22482a52,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383394970930885401, guid: 38ee6858026e03854b792cdc22482a52,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383394970930885401, guid: 38ee6858026e03854b792cdc22482a52,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383394970930885401, guid: 38ee6858026e03854b792cdc22482a52,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383394970930885401, guid: 38ee6858026e03854b792cdc22482a52,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383394970930885401, guid: 38ee6858026e03854b792cdc22482a52,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383394970930885401, guid: 38ee6858026e03854b792cdc22482a52,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383394970930885401, guid: 38ee6858026e03854b792cdc22482a52,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383394970930885401, guid: 38ee6858026e03854b792cdc22482a52,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 38ee6858026e03854b792cdc22482a52, type: 3}
 --- !u!1 &850355466
 GameObject:
   m_ObjectHideFlags: 1
@@ -17167,6 +17411,85 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cbb7446b76f8a36e8a7901f6a74caae, type: 3}
+--- !u!1001 &1295711773
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8952695840164657680, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_Name
+      value: Lymphocyte (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6281042736320014433, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: reloadTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2596167432376935937, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: antibodiesDrift
+      value: 
+      objectReference: {fileID: 1506780018}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fb0b80d35f11620c3a5222598a3def60, type: 3}
 --- !u!213 &1341015910
 Sprite:
   m_ObjectHideFlags: 0
@@ -19844,6 +20167,85 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1564895570}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1512505625
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8952695840164657680, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_Name
+      value: Lymphocyte (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6281042736320014433, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: reloadTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2596167432376935937, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: antibodiesDrift
+      value: 
+      objectReference: {fileID: 1506780018}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fb0b80d35f11620c3a5222598a3def60, type: 3}
 --- !u!1 &1555078671
 GameObject:
   m_ObjectHideFlags: 1
@@ -20011,6 +20413,85 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1001 &1559810526
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8952695840164657680, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_Name
+      value: Lymphocyte (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6281042736320014433, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: reloadTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2596167432376935937, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: antibodiesDrift
+      value: 
+      objectReference: {fileID: 1506780018}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fb0b80d35f11620c3a5222598a3def60, type: 3}
 --- !u!1001 &1564895570
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20030,7 +20511,7 @@ PrefabInstance:
     - target: {fileID: 1450122561964289412, guid: 7368d3dd7ec4a0ab0865ad3bd4596b46,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1839389939422936919, guid: 7368d3dd7ec4a0ab0865ad3bd4596b46,
         type: 3}
