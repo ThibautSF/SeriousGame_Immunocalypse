@@ -141,12 +141,15 @@ public class TargetingSystem : FSystem {
 			foreach (Vector3Int cell in path) {
 				Vector3 cellWorldPos = myMaps.myTileMaps[0].CellToWorld(cell);
 				mv.path.Add(cellWorldPos);
-				Debug.DrawLine(lastCellWorldPos, cellWorldPos, (i%2==0) ? Color.green : Color.white);
+				//Debug.DrawLine(lastCellWorldPos, cellWorldPos, (i%2==0) ? Color.green : Color.white);
 						
 				lastCellWorldPos = cellWorldPos;
 				s += " -> " + cell.ToString();
 				i++;
 			}
+
+			if (mv.path.Count > 0)
+				mv.path.RemoveAt(mv.path.Count -1);
 
 			s += " | [" + myMaps.myTileMaps[0].WorldToCell(mv.targetPosition).ToString() + "]";
 
@@ -162,11 +165,13 @@ public class TargetingSystem : FSystem {
 			Move mv = go.GetComponent<Move>();
 
 			GameObject targetSeeked = seekTarget(go);
+			bool newTarget = false;
 			if (mv.targetObject == null || mv.targetObject != seekTarget(go)) {
 				mv.targetObject = targetSeeked;
+				newTarget = true;
 			}
 
-			if (mv.targetObject != null) {
+			if (mv.targetObject != null && (mv.path.Count == 0 || newTarget)) {
 				mv.targetPosition = mv.targetObject.transform.position;
 				updatePath(go);
 			}
