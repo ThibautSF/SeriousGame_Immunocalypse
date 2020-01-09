@@ -4,13 +4,22 @@ using FYFY;
 using System.Collections;
 using System.Collections.Generic;
 
-public class InitLevelSystem : FSystem {
+public class LevelSystem : FSystem {
 	private Family _mapSpawnerGO = FamilyManager.getFamily(
 		new AllOfComponents(typeof(MapLayer), typeof(Factory))
 	);
 
+	private Family _cellsGO = FamilyManager.getFamily(
+		new AllOfComponents(typeof(Cell), typeof(Health))
+	);
+
+	private Family _playerHealthGO = FamilyManager.getFamily(
+		new AllOfComponents(typeof(Player), typeof(Health))
+	);
+
 	// Use to process your families.
 	protected override void onProcess(int familiesUpdateCount) {
+		//Init Cells
 		foreach (GameObject go in _mapSpawnerGO) {
 			Factory factory = go.GetComponent<Factory>();
 
@@ -36,5 +45,23 @@ public class InitLevelSystem : FSystem {
 				factory.reloadProgress = 0f;
 			}
 		}
+
+		foreach (GameObject go in _playerHealthGO) {
+			bool init = false;
+			Health playerHealth = go.GetComponent<Health>();
+
+			if (playerHealth.maxHealthPoints == 0)
+				init = true;
+			playerHealth.healthPoints = 0;
+
+			foreach (GameObject cellGO in _cellsGO) {
+				Health cellHealth = cellGO.GetComponent<Health>();
+
+				if (init)
+					playerHealth.maxHealthPoints += cellHealth.maxHealthPoints;
+				playerHealth.healthPoints += cellHealth.healthPoints;
+			}
+		}
+
 	}
 }
