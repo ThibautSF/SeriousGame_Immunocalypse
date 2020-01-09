@@ -24,8 +24,12 @@ public class BlockingSystem : FSystem {
 			Transform tr = go.GetComponent<Transform>();
 			Triggered2D t2d = go.GetComponent<Triggered2D>();
 			Predator predator = go.GetComponent<Predator>();
+			Block block = go.GetComponent<Block>();
 
-			Debug.Log(go.name + " " + t2d.Targets.Length);
+			block.timeSinceLastEffect += Time.deltaTime;
+			bool effectApplied = false;
+
+			//Debug.Log(go.name + " " + t2d.Targets.Length);
 
 			foreach (GameObject target in t2d.Targets) {
 				if (_preysGO.contains(target.GetInstanceID())) {
@@ -38,13 +42,18 @@ public class BlockingSystem : FSystem {
 
 						float dist = Vector3.Distance(collidedTr.position, tr.position);
 
-						if (Time.deltaTime > 1) {
+						if (block.timeSinceLastEffect >= block.effectFreq) {
 							//float f = (float) 0.5f * (1/dist);
 							float f = 0.5f;
 							mv.speedModifiers.Add(new SpeedModifier(f, false, 2f));
+							effectApplied = true;
 						}
 					}
 				}
+			}
+
+			if (effectApplied) {
+				block.timeSinceLastEffect = 0f;
 			}
 		}
 	}

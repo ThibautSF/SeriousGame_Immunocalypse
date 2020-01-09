@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
 public class Eat : MonoBehaviour {
-	// Advice: FYFY component aims to contain only public members (according to Entity-Component-System paradigm).
+	//Damage per second
+	public float damage = 10;
+	public float timeSinceLastEffect = 1f;
+	public float effectFreq = 1f;
 }

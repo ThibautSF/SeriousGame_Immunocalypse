@@ -570,10 +570,13 @@ GameObject:
   m_Component:
   - component: {fileID: 6383394970930885401}
   - component: {fileID: 1738326097123376897}
+  - component: {fileID: -122569566573103931}
+  - component: {fileID: 8984258993165271167}
   - component: {fileID: 225859924813892374}
   - component: {fileID: 42280804593489587}
   - component: {fileID: 5373304577161317300}
   - component: {fileID: 8447398523680714733}
+  - component: {fileID: 5223764530711455941}
   m_Layer: 0
   m_Name: Virus
   m_TagString: Untagged
@@ -621,6 +624,39 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!50 &-122569566573103931
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5828499375310798995}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &8984258993165271167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5828499375310798995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -571295319, guid: caa2e252aabdbc9f9a6ee487703e2522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &225859924813892374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -677,6 +713,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myPreys:
   - Cell
+--- !u!114 &5223764530711455941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5828499375310798995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b98d942541eecc5aa711142bab7a7f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &5998135056466911914
 GameObject:
   m_ObjectHideFlags: 0
