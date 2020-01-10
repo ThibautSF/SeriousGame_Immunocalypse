@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+// Sources and helps
 //https://github.com/davecusatis/A-Star-Sharp/blob/master/Astar.cs
 //https://bitbucket.org/Unity-Technologies/2ddemos/src/b7a77d0313513fe8c5eaafc77bfba10e7650281c/PreviewR401/Assets/Scripts/Player/WalkableTilePathfinding.cs?at=PreviewR401&fileviewer=file-view-default
 //https://stackoverflow.com/questions/6661169/finding-adjacent-neighbors-on-a-hexagonal-grid
