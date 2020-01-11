@@ -25,25 +25,27 @@ public class MoveSystem : FSystem {
 			Transform tr = go.GetComponent<Transform>();
 			Move mv = go.GetComponent<Move>();
 
-			//Get next target
-			Vector3 target = mv.path[0];
-			printPath(go);
-			
-			//Look at direction
-			Vector2 vectorToTarget = target - tr.position;
-			Debug.DrawRay(tr.position, vectorToTarget, Color.red);
-			float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-			Quaternion qt = Quaternion.AngleAxis(angle, Vector3.forward);
-			tr.rotation = Quaternion.RotateTowards(tr.rotation, qt, Time.deltaTime * mv.speed * 100);
-			
-			//Move
-			float modifiers = getSpeedModifiers(go, tr.position, vectorToTarget);
-			tr.position = Vector2.MoveTowards(tr.position, target, mv.speed * modifiers * Time.deltaTime);
+			if (mv.path.Count > 0) {
+				//Get next target
+				Vector3 target = mv.path[0];
+				printPath(go);
+				
+				//Look at direction
+				Vector2 vectorToTarget = target - tr.position;
+				Debug.DrawRay(tr.position, vectorToTarget, Color.red);
+				float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+				Quaternion qt = Quaternion.AngleAxis(angle, Vector3.forward);
+				tr.rotation = Quaternion.RotateTowards(tr.rotation, qt, Time.deltaTime * mv.speed * 100);
+				
+				//Move
+				float modifiers = getSpeedModifiers(go, tr.position, vectorToTarget);
+				tr.position = Vector2.MoveTowards(tr.position, target, mv.speed * modifiers * Time.deltaTime);
 
-			//Clean target if reached
-			if (tr.position == target) {
-				if (mv.path.Count > 0) {
-					mv.path.RemoveAt(0);
+				//Clean target if reached
+				if (tr.position == target) {
+					if (mv.path.Count > 0) {
+						mv.path.RemoveAt(0);
+					}
 				}
 			}
 		}

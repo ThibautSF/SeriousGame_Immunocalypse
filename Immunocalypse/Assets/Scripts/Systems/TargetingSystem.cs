@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 using FYFY;
 
 public class TargetingSystem : FSystem {
-	private Family _randomMovingGO = FamilyManager.getFamily(
+	private Family _movingGO = FamilyManager.getFamily(
 		new AllOfComponents(typeof(Move))
 	);
 	private Family _preysGO = FamilyManager.getFamily(
@@ -20,14 +20,14 @@ public class TargetingSystem : FSystem {
 			myMaps = grid.GetComponent<GridMap>();
 		}
 
-		/* */
-		foreach (GameObject go in _randomMovingGO) {
+		/* *
+		foreach (GameObject go in _movingGO) {
 			updateTarget(go);
 			updatePath(go);
 		}
 		/* */
 
-		_randomMovingGO.addEntryCallback(updateTarget);
+		_movingGO.addEntryCallback(updateTarget);
 	}
 
 	private GameObject seekTarget(GameObject go) {
@@ -101,7 +101,7 @@ public class TargetingSystem : FSystem {
 			}
 		}
 
-		updateTarget(go, new Vector3((Random.value - 0.5f) * 28f, (Random.value - 0.5f) * 20f));
+		//updateTarget(go, new Vector3((Random.value - 0.5f) * 28f, (Random.value - 0.5f) * 20f));
 	}
 
 	private void updateTarget(GameObject go, Vector3 target) {
@@ -160,25 +160,30 @@ public class TargetingSystem : FSystem {
 	}
 
 	protected override void onProcess(int familiesUpdateCount) {
-		foreach (GameObject go in _randomMovingGO) {
+		foreach (GameObject go in _movingGO) {
 			Transform tr = go.GetComponent<Transform>();
 			Move mv = go.GetComponent<Move>();
 
 			GameObject targetSeeked = seekTarget(go);
-			bool newTarget = false;
+			bool newTargetSeeked = false;
 			if (mv.targetObject == null || mv.targetObject != seekTarget(go)) {
 				mv.targetObject = targetSeeked;
-				newTarget = true;
+				newTargetSeeked = true;
 			}
 
-			if (mv.targetObject != null && (mv.path.Count == 0 || newTarget)) {
+			if (mv.targetObject != null && (mv.path.Count == 0 || newTargetSeeked)) {
 				mv.targetPosition = mv.targetObject.transform.position;
 				updatePath(go);
-			}
-
-			if (mv.targetPosition == tr.position) {
-				updateTarget(go);
+			} else if ((mv.path.Count == 0 && mv.newTargetPosition) || mv.newTargetPosition) {
 				updatePath(go);
+				mv.newTargetPosition = false;
+			} else {
+				/*
+				if (mv.targetPosition == tr.position) {
+					updateTarget(go);
+					updatePath(go);
+				}
+				*/
 			}
 		}
 	}
