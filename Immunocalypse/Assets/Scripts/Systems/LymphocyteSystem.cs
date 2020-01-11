@@ -25,7 +25,7 @@ public class LymphocyteSystem : FSystem {
 			factory.reloadProgress += Time.deltaTime;
 			if (factory.reloadProgress >= factory.reloadTime) {
 				//Instantiate and bind to FYFY a new instance of antibodies drift (factory prefab)
-				GameObject myDrift = Object.Instantiate<GameObject>(factory.prefab, tr.position, tr.rotation);
+				GameObject myDrift = Object.Instantiate<GameObject>(factory.prefab, tr.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
 				GameObjectManager.bind(myDrift);
 
 				//Set some parameters of the antibodies drift
