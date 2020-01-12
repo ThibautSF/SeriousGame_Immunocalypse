@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class LevelSystem : FSystem {
+	private bool levelInit = false;
+	private string levelStatus = "Pending";
+
 	private Family _mapSpawnerGO = FamilyManager.getFamily(
 		new AllOfComponents(typeof(MapLayer), typeof(Factory))
 	);
@@ -18,33 +21,62 @@ public class LevelSystem : FSystem {
 		new AllOfComponents(typeof(Player), typeof(Health))
 	);
 
+	private Family _attackersGO = FamilyManager.getFamily(
+		new AnyOfComponents(typeof(Virus), typeof(Bacteria))
+	);
+
 	// Use to process your families.
 	protected override void onProcess(int familiesUpdateCount) {
-		//Init Cells
-		foreach (GameObject go in _mapSpawnerGO) {
-			Factory factory = go.GetComponent<Factory>();
-			Tilemap tilemap = go.GetComponent<Tilemap>();
+		if (!levelInit) {
+			foreach (GameObject go in _mapSpawnerGO) {
+				Factory factory = go.GetComponent<Factory>();
+				Tilemap tilemap = go.GetComponent<Tilemap>();
 
-			//factory.reloadProgress += Time.deltaTime;
-			if (factory.reloadProgress >= factory.reloadTime) {
-				List<Vector3> allTiles = new List<Vector3>();
+				//factory.reloadProgress += Time.deltaTime;
+				if (factory.reloadProgress >= factory.reloadTime) {
+					List<Vector3> allTiles = new List<Vector3>();
 
-				for (int n = tilemap.cellBounds.xMin; n < tilemap.cellBounds.xMax; n++) {
-					for (int p = tilemap.cellBounds.yMin; p < tilemap.cellBounds.yMax; p++) {
-						Vector3Int localPos = new Vector3Int(n, p, (int) tilemap.transform.position.y);
+					for (int n = tilemap.cellBounds.xMin; n < tilemap.cellBounds.xMax; n++) {
+						for (int p = tilemap.cellBounds.yMin; p < tilemap.cellBounds.yMax; p++) {
+							Vector3Int localPos = new Vector3Int(n, p, (int) tilemap.transform.position.y);
 
-						if (tilemap.HasTile(localPos)) {
-							Vector3 worldPos = tilemap.CellToWorld(localPos);
+							if (tilemap.HasTile(localPos)) {
+								Vector3 worldPos = tilemap.CellToWorld(localPos);
 
-							//Instantiate and bind to FYFY a new instance of antibodies drift (factory prefab)
-							GameObject mySpawn = Object.Instantiate<GameObject>(factory.prefab, worldPos, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
-							GameObjectManager.bind(mySpawn);
+								//Instantiate and bind to FYFY a new instance of antibodies drift (factory prefab)
+								GameObject mySpawn = Object.Instantiate<GameObject>(factory.prefab, worldPos, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
+								GameObjectManager.bind(mySpawn);
+							}
 						}
 					}
-				}
 
-				factory.reloadProgress = 0f;
-			} else {
+					factory.reloadProgress = 0f;
+				}
+			}
+
+			levelInit = true;
+		} else {
+			//Update health
+			foreach (GameObject go in _playerHealthGO) {
+				bool init = false;
+				Health playerHealth = go.GetComponent<Health>();
+
+				if (playerHealth.maxHealthPoints == 0)
+					init = true;
+				playerHealth.healthPoints = 0;
+
+				foreach (GameObject cellGO in _cellsGO) {
+					Health cellHealth = cellGO.GetComponent<Health>();
+
+					if (init)
+						playerHealth.maxHealthPoints += cellHealth.maxHealthPoints;
+					playerHealth.healthPoints += cellHealth.healthPoints;
+				}
+			}
+
+			foreach (GameObject go in _mapSpawnerGO) {
+				Tilemap tilemap = go.GetComponent<Tilemap>();
+
 				//Remove cell tile position when cell is dead
 				for (int n = tilemap.cellBounds.xMin; n < tilemap.cellBounds.xMax; n++) {
 					for (int p = tilemap.cellBounds.yMin; p < tilemap.cellBounds.yMax; p++) {
@@ -73,24 +105,38 @@ public class LevelSystem : FSystem {
 					}
 				}
 			}
-		}
 
-		foreach (GameObject go in _playerHealthGO) {
-			bool init = false;
-			Health playerHealth = go.GetComponent<Health>();
+			if (_attackersGO.Count == 0) {
+				levelStatus = "Victory";
+			} else {
+				int nb = 0;
 
-			if (playerHealth.maxHealthPoints == 0)
-				init = true;
-			playerHealth.healthPoints = 0;
+				foreach (GameObject go in _playerHealthGO) {
+					Health playerHealth = go.GetComponent<Health>();
 
-			foreach (GameObject cellGO in _cellsGO) {
-				Health cellHealth = cellGO.GetComponent<Health>();
+					if (playerHealth.healthPoints == 0)
+						nb += 1;
+				}
 
-				if (init)
-					playerHealth.maxHealthPoints += cellHealth.maxHealthPoints;
-				playerHealth.healthPoints += cellHealth.healthPoints;
+				if (nb == _playerHealthGO.Count)
+					levelStatus = "Defeat";
 			}
 		}
 
+		switch (levelStatus) {
+			case "Victory":
+				Debug.Log(levelStatus);
+				//TODO
+				break;
+
+			case "Defeat":
+				Debug.Log(levelStatus);
+				//TODO
+				break;
+
+			case "Pending":
+			default:
+				break;
+		}
 	}
 }
