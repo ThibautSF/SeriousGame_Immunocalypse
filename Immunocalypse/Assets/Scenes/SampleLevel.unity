@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 129450832}
   - component: {fileID: 129450833}
   - component: {fileID: 129450834}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Main_Loop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -779,7 +779,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 389139253}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FluxPos3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -807,6 +807,71 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8952695840164657680, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_Name
+      value: Lymphocyte
+      objectReference: {fileID: 0}
+    - target: {fileID: 2596167432376935937, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: antibodiesDrift
+      value: 
+      objectReference: {fileID: 1506780018}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8228126226219297862, guid: fb0b80d35f11620c3a5222598a3def60,
         type: 3}
       propertyPath: m_Positions.Array.data[2].z
@@ -1046,71 +1111,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Positions.Array.data[49].z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8952695840164657680, guid: fb0b80d35f11620c3a5222598a3def60,
-        type: 3}
-      propertyPath: m_Name
-      value: Lymphocyte
-      objectReference: {fileID: 0}
-    - target: {fileID: 2596167432376935937, guid: fb0b80d35f11620c3a5222598a3def60,
-        type: 3}
-      propertyPath: antibodiesDrift
-      value: 
-      objectReference: {fileID: 1506780018}
-    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 7.64
-      objectReference: {fileID: 0}
-    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.23
-      objectReference: {fileID: 0}
-    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 176223730117397247, guid: fb0b80d35f11620c3a5222598a3def60,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2764074640961797790, guid: fb0b80d35f11620c3a5222598a3def60,
         type: 3}
@@ -16347,7 +16347,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 507541765}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FluxPos7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16733,7 +16733,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 619552448}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FluxPos4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18071,7 +18071,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 882730567}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FluxPos2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18259,7 +18259,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 906662174}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FluxPos10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18791,7 +18791,7 @@ GameObject:
   - component: {fileID: 1135910939}
   - component: {fileID: 1135910937}
   - component: {fileID: 1135910940}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18863,7 +18863,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1237390902}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FluxPos1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23479,12 +23479,12 @@ PrefabInstance:
     - target: {fileID: 1839389939422936919, guid: 7368d3dd7ec4a0ab0865ad3bd4596b46,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.155
+      value: 1.49
       objectReference: {fileID: 0}
     - target: {fileID: 1839389939422936919, guid: 7368d3dd7ec4a0ab0865ad3bd4596b46,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.1176362
+      value: 3.37
       objectReference: {fileID: 0}
     - target: {fileID: 1839389939422936919, guid: 7368d3dd7ec4a0ab0865ad3bd4596b46,
         type: 3}
@@ -24120,7 +24120,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1838068491}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FluxPos5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24433,7 +24433,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1909410195}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FluxPos8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24598,7 +24598,7 @@ GameObject:
   - component: {fileID: 2054069519}
   - component: {fileID: 2054069518}
   - component: {fileID: 2054069517}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -24715,7 +24715,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2072849725}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FluxPos6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24745,7 +24745,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2078167709}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FluxPos9
   m_TagString: Untagged
   m_Icon: {fileID: 0}

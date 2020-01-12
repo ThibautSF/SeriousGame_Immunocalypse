@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 using FYFY;
 
 public class MoveSystem : FSystem {
-	private Family _randomMovingGO = FamilyManager.getFamily(
+	private Family _movingGO = FamilyManager.getFamily(
 		new AllOfComponents(typeof(Move))
 	);
 
@@ -21,13 +21,14 @@ public class MoveSystem : FSystem {
 
 	protected override void onProcess(int familiesUpdateCount) {
 
-		foreach (GameObject go in _randomMovingGO) {
+		foreach (GameObject go in _movingGO) {
 			Transform tr = go.GetComponent<Transform>();
 			Move mv = go.GetComponent<Move>();
 
 			if (mv.path.Count > 0) {
 				//Get next target
 				Vector3 target = mv.path[0];
+
 				printPath(go);
 				
 				//Look at direction
@@ -42,9 +43,18 @@ public class MoveSystem : FSystem {
 				tr.position = Vector2.MoveTowards(tr.position, target, mv.speed * modifiers * Time.deltaTime);
 
 				//Clean target if reached
-				if (tr.position == target) {
-					if (mv.path.Count > 0) {
-						mv.path.RemoveAt(0);
+				if (mv.path.Count > 1 && myMaps != null) {
+					for (int i = myMaps.myTileMaps.Count - 1; i >= 0 ; i--) {
+						if (myMaps.myTileMaps[i].WorldToCell(tr.position) == myMaps.myTileMaps[i].WorldToCell(target)) {
+							mv.path.RemoveAt(0);
+						}
+						break;
+					}
+				} else {
+					if (tr.position == target) {
+						if (mv.path.Count > 0) {
+							mv.path.RemoveAt(0);
+						}
 					}
 				}
 			}
@@ -107,7 +117,7 @@ public class MoveSystem : FSystem {
 		Vector3 lastStep = tr.position;
 		for (int i = 0; i < mv.path.Count; i++){
 			Debug.DrawLine(lastStep, mv.path[i], (i%2==0) ? Color.green : Color.white);
-					
+
 			lastStep = mv.path[i];
 		}
 	}
