@@ -118,7 +118,7 @@ public class PointerSystem : FSystem {
 		//For simple selection
 		bool objectSelected = false;
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		RaycastHit2D[] hit2d = Physics2D.GetRayIntersectionAll(ray, Mathf.Infinity);
+		RaycastHit2D[] hit2d = Physics2D.GetRayIntersectionAll(ray, Mathf.Infinity, LayerMask.GetMask("Default"));
 		foreach (RaycastHit2D hit in hit2d) {
 			if (hit.collider != null && hit.collider.transform == go.transform) {
 				// raycast hit this gameobject
