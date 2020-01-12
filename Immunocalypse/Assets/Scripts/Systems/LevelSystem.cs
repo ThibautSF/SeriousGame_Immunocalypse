@@ -3,6 +3,7 @@ using UnityEngine.Tilemaps;
 using FYFY;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class LevelSystem : FSystem {
 	private Family _mapSpawnerGO = FamilyManager.getFamily(
@@ -22,10 +23,10 @@ public class LevelSystem : FSystem {
 		//Init Cells
 		foreach (GameObject go in _mapSpawnerGO) {
 			Factory factory = go.GetComponent<Factory>();
+			Tilemap tilemap = go.GetComponent<Tilemap>();
 
 			//factory.reloadProgress += Time.deltaTime;
 			if (factory.reloadProgress >= factory.reloadTime) {
-				Tilemap tilemap = go.GetComponent<Tilemap>();
 				List<Vector3> allTiles = new List<Vector3>();
 
 				for (int n = tilemap.cellBounds.xMin; n < tilemap.cellBounds.xMax; n++) {
@@ -43,6 +44,34 @@ public class LevelSystem : FSystem {
 				}
 
 				factory.reloadProgress = 0f;
+			} else {
+				//Remove cell tile position when cell is dead
+				for (int n = tilemap.cellBounds.xMin; n < tilemap.cellBounds.xMax; n++) {
+					for (int p = tilemap.cellBounds.yMin; p < tilemap.cellBounds.yMax; p++) {
+						Vector3Int localPos = new Vector3Int(n, p, (int) tilemap.transform.position.y);
+
+						if (tilemap.HasTile(localPos)) {
+							bool cellFound = false;
+							Vector3 worldPos = tilemap.CellToWorld(localPos);
+
+							Collider2D[] colliders = Physics2D.OverlapCircleAll(worldPos, 1f, LayerMask.GetMask("Default"));
+							
+							foreach (Collider2D collider in colliders) {
+								GameObject collidedGO = collider.gameObject;
+
+								if (_cellsGO.contains(collidedGO.GetInstanceID())) {
+									//There is a cell at position
+									cellFound = true;
+									break;
+								}
+							}
+
+							if (!cellFound) {
+								tilemap.SetTile(localPos, null);
+							}
+						}
+					}
+				}
 			}
 		}
 
