@@ -27,7 +27,7 @@ public class TargetingSystem : FSystem {
 		}
 		/* */
 
-		_movingGO.addEntryCallback(updateTarget);
+		//_movingGO.addEntryCallback(updateTarget);
 	}
 
 	private GameObject seekTarget(GameObject go) {
@@ -164,9 +164,15 @@ public class TargetingSystem : FSystem {
 			Transform tr = go.GetComponent<Transform>();
 			Move mv = go.GetComponent<Move>();
 
-			GameObject targetSeeked = seekTarget(go);
+			GameObject targetSeeked = null;
+			if (!mv.forcedTarget) {
+				//Seek new target only if we don't have a forced order to do !
+				Debug.Log(go.name + " " + mv.forcedTarget);
+				targetSeeked = seekTarget(go);
+			}
+
 			bool newTargetSeeked = false;
-			if (mv.targetObject == null || mv.targetObject != seekTarget(go)) {
+			if (mv.targetObject != targetSeeked) {
 				mv.targetObject = targetSeeked;
 				newTargetSeeked = true;
 			}

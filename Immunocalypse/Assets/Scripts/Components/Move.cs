@@ -10,6 +10,8 @@ public class Move : MonoBehaviour {
 	[HideInInspector]
 	public bool newTargetPosition = false;
 	[HideInInspector]
+	public bool forcedTarget = false;
+	[HideInInspector]
 	public Vector3 targetPosition;
 	[HideInInspector]
 	public GameObject targetObject;

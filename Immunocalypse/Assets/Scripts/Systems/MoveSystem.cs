@@ -44,16 +44,31 @@ public class MoveSystem : FSystem {
 
 				//Clean target if reached
 				if (mv.path.Count > 1 && myMaps != null) {
+					//If we reach the tile targeted at worldpos -> consider subtarget reached
 					for (int i = myMaps.myTileMaps.Count - 1; i >= 0 ; i--) {
 						if (myMaps.myTileMaps[i].WorldToCell(tr.position) == myMaps.myTileMaps[i].WorldToCell(target)) {
 							mv.path.RemoveAt(0);
+							break;
 						}
-						break;
 					}
 				} else {
+					//Last target must be reached !
+
+					//If we reach the tile targeted at worldpos -> allow to retarget (avoid blocked by unreachable target if we can retarget)
+					//(Other cases must be retarget manualy by the player)
+					for (int i = myMaps.myTileMaps.Count - 1; i >= 0 ; i--) {
+						if (myMaps.myTileMaps[i].WorldToCell(tr.position) == myMaps.myTileMaps[i].WorldToCell(target)) {
+							mv.forcedTarget = false;
+							break;
+						}
+					}
+					
+
+					//If target reached
 					if (tr.position == target) {
 						if (mv.path.Count > 0) {
 							mv.path.RemoveAt(0);
+							mv.forcedTarget = false;
 						}
 					}
 				}

@@ -56,6 +56,7 @@ public class PointerSystem : FSystem {
 
 					move.targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 					move.newTargetPosition = true;
+					move.forcedTarget = true;
 				}
 			}
 
