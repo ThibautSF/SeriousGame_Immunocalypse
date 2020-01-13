@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
+// Based on code by Jeff Zimmer (https://hyunkell.com/blog/rts-style-unit-selection-in-unity-5/)
 public static class Utils
 {
     static Texture2D _whiteTexture;
