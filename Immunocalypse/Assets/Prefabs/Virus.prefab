@@ -578,6 +578,7 @@ GameObject:
   - component: {fileID: 8447398523680714733}
   - component: {fileID: 5223764530711455941}
   - component: {fileID: 2279084923024759981}
+  - component: {fileID: 8811185491822135837}
   m_Layer: 0
   m_Name: Virus
   m_TagString: Untagged
@@ -684,6 +685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2.5
   newTargetPosition: 0
+  forcedTarget: 0
   targetPosition: {x: 0, y: 0, z: 0}
   targetObject: {fileID: 0}
   path: []
@@ -746,6 +748,21 @@ MonoBehaviour:
   myUI:
     mySlider: {fileID: 0}
     myText: {fileID: 0}
+--- !u!114 &8811185491822135837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5828499375310798995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4adf594e9fda15a55ad0713773912150, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recoverPoints: -0.5
+  reloadTime: 1
+  reloadProgress: 0
 --- !u!1 &5998135056466911914
 GameObject:
   m_ObjectHideFlags: 0

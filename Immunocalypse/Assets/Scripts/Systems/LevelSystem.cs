@@ -25,6 +25,14 @@ public class LevelSystem : FSystem {
 		new AllOfComponents(typeof(Player), typeof(Health))
 	);
 
+	private Family _playerEnergyGO = FamilyManager.getFamily(
+		new AllOfComponents(typeof(Player), typeof(Energy))
+	);
+
+	private Family _energizerGO = FamilyManager.getFamily(
+		new AllOfComponents(typeof(Energizer))
+	);
+
 	private Family _attackersGO = FamilyManager.getFamily(
 		new AnyOfComponents(typeof(FactoryLevel), typeof(Virus), typeof(Bacteria))
 	);
@@ -72,6 +80,30 @@ public class LevelSystem : FSystem {
 						playerHealth.maxHealthPoints += cellHealth.maxHealthPoints;
 					playerHealth.healthPoints += cellHealth.healthPoints;
 				}
+			}
+
+			//Update energy
+			foreach (GameObject go in _playerEnergyGO) {
+				Energy energy = go.GetComponent<Energy>();
+
+				foreach (GameObject energizerGO in _energizerGO) {
+					Energizer energizer = energizerGO.GetComponent<Energizer>();
+
+					energizer.reloadProgress += Time.deltaTime;
+
+					if (energizer.reloadProgress >= energizer.reloadTime) {
+						energy.energyPoints += energizer.recoverPoints;
+
+						energizer.reloadProgress = 0f;
+					}
+				}
+
+				//Cap at max
+				if (energy.energyPoints > energy.maxEnergyPoints)
+					energy.energyPoints = energy.maxEnergyPoints;
+				
+				if (energy.energyPoints < 0)
+					energy.energyPoints = 0f;
 			}
 
 			//Check cell spawn position of cell is dead

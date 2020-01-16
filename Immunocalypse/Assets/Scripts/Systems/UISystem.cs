@@ -7,6 +7,10 @@ public class UISystem : FSystem {
 		new AllOfComponents(typeof(Health), typeof(UIPrint))
 	);
 
+	private Family _energyUIGO = FamilyManager.getFamily(
+		new AllOfComponents(typeof(Energy), typeof(UIPrint))
+	);
+
 	// Use this to update member variables when system pause. 
 	// Advice: avoid to update your families inside this function.
 	protected override void onPause(int currentFrame) {
@@ -25,6 +29,15 @@ public class UISystem : FSystem {
 
 			if (health.myUI.mySlider != null) {
 				updateSlider(health.myUI.mySlider, health.healthPoints, health.maxHealthPoints);
+			}
+		}
+
+		foreach (GameObject go in _energyUIGO) {
+			Energy energy = go.GetComponent<Energy>();
+			UIPrint ui = go.GetComponent<UIPrint>();
+
+			if (energy.myUI.mySlider != null) {
+				updateSlider(energy.myUI.mySlider, energy.energyPoints, energy.maxEnergyPoints);
 			}
 		}
 	}
