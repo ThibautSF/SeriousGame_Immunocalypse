@@ -61,7 +61,9 @@ public class LevelSystem : FSystem {
 			foreach (GameObject go in _playerGO) {
 				Player player = go.GetComponent<Player>();
 
-				foreach (GameObject buyable in player.levelBuyablePrefabs) {
+				foreach (GameObject buyableGO in player.levelBuyablePrefabs) {
+					Buyable buyable = buyableGO.GetComponent<Buyable>();
+
 					//Create a new visual
 					GameObject myUI = Object.Instantiate<GameObject>(player.unitUIVisual, player.unitContainer.transform);
 					GameObjectManager.bind(myUI);
@@ -70,15 +72,18 @@ public class LevelSystem : FSystem {
 					RectTransform rt = player.unitContainer.GetComponent<RectTransform>();
 					rt.sizeDelta = new Vector2(rt.sizeDelta.x, rt.sizeDelta.y + 100);
 
-					SpriteRenderer sr = buyable.GetComponentInChildren<SpriteRenderer>();
-					Info info = buyable.GetComponent<Info>();
+					SpriteRenderer sr = buyableGO.GetComponentInChildren<SpriteRenderer>();
+					Info info = buyableGO.GetComponent<Info>();
 
 					//Update UI image and text
 					UIUnit ui = myUI.GetComponent<UIUnit>();
 					ui.image.sprite = sr.sprite;
-					ui.text.text = info.myName;
 
-					ui.prefab = buyable;
+					ui.text.text = info.myName;
+					if(buyable != null)
+						ui.text.text += "\nCost : " + buyable.energyPrice.ToString("F0") + " energy";
+
+					ui.prefab = buyableGO;
 				}
 			}
 

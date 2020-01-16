@@ -30,6 +30,11 @@ public class UISystem : FSystem {
 			if (health.myUI.mySlider != null) {
 				updateSlider(health.myUI.mySlider, health.healthPoints, health.maxHealthPoints);
 			}
+
+			if (health.myUI.myText != null) {
+				float percent = health.healthPoints / health.maxHealthPoints * 100;
+				health.myUI.myText.text = percent.ToString("F2") + " %";
+			}
 		}
 
 		foreach (GameObject go in _energyUIGO) {
@@ -38,6 +43,10 @@ public class UISystem : FSystem {
 
 			if (energy.myUI.mySlider != null) {
 				updateSlider(energy.myUI.mySlider, energy.energyPoints, energy.maxEnergyPoints);
+			}
+
+			if (energy.myUI.myText != null) {
+				energy.myUI.myText.text = energy.energyPoints.ToString("F0") + " / " + energy.maxEnergyPoints.ToString("F0");
 			}
 		}
 	}
