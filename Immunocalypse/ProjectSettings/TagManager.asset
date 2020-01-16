@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Unselected
   - Selected
+  - Untargeted
+  - Targeted
   layers:
   - Default
   - TransparentFX
