@@ -11,23 +11,19 @@ public class TargetingSystem : FSystem {
 	private Family _preysGO = FamilyManager.getFamily(
 		new AllOfComponents(typeof(Prey))
 	);
+	private Family _selectableGO = FamilyManager.getFamily(
+		new AllOfComponents(typeof(SelectableEntity))
+	);
+
+	private Grid grid;
 	private GridMap myMaps;
 
 	public TargetingSystem() {
-		Grid grid = Object.FindObjectOfType<Grid>();
+		grid = Object.FindObjectOfType<Grid>();
 
 		if (grid != null) {
 			myMaps = grid.GetComponent<GridMap>();
 		}
-
-		/* *
-		foreach (GameObject go in _movingGO) {
-			updateTarget(go);
-			updatePath(go);
-		}
-		/* */
-
-		//_movingGO.addEntryCallback(updateTarget);
 	}
 
 	private GameObject seekTarget(GameObject go) {
@@ -65,43 +61,13 @@ public class TargetingSystem : FSystem {
 	}
 
 	private void updateTarget(GameObject go) {
-		//TODO clean code duplicated in seekTarget 
-		Transform tr = go.GetComponent<Transform>();
-		Collider2D[] colliders = Physics2D.OverlapCircleAll(tr.position, 50f);
-		Predator predator = go.GetComponent<Predator>();
+		Collider2D c = grid.GetComponent<Collider2D>();
 
-		if (colliders.Length > 0) {
-			float minDist = Mathf.Infinity;
-			minDist = 5f;
-			GameObject closestTarget = null;
-			foreach (Collider2D collider in colliders) {
-				GameObject collidedGO = collider.gameObject;
+		Bounds b = c.bounds;
 
-				if (collidedGO == go) {
-					continue;
-				} else if (predator != null) {
-					if (_preysGO.contains(collidedGO.GetInstanceID())) {
-						Transform collidedTr = collidedGO.GetComponent<Transform>();
-						Prey prey = collidedGO.GetComponent<Prey>();
+		Vector2 newpos = new Vector2(Random.Range(b.min.x, b.max.x), Random.Range(b.min.y, b.max.y));
 
-						if (predator.myPreys.Contains(prey.myType)) {
-							float dist = Vector3.Distance(collidedTr.position, tr.position);
-							if (dist < minDist) {
-								minDist = dist;
-								closestTarget = collidedGO;
-							}
-						}
-					}
-				}
-			}
-
-			if (closestTarget != null) {
-				updateTarget(go, closestTarget);
-				return;
-			}
-		}
-
-		//updateTarget(go, new Vector3((Random.value - 0.5f) * 28f, (Random.value - 0.5f) * 20f));
+		updateTarget(go, newpos);
 	}
 
 	private void updateTarget(GameObject go, Vector3 target) {
@@ -109,6 +75,7 @@ public class TargetingSystem : FSystem {
 		Move mv = go.GetComponent<Move>();
 
 		mv.targetPosition = target;
+		mv.newTargetPosition = true;
 	}
 
 	private void updateTarget(GameObject go, GameObject target) {
@@ -190,6 +157,9 @@ public class TargetingSystem : FSystem {
 					updatePath(go);
 				}
 				*/
+				Debug.Log(mv.path.Count);
+				if (mv.path.Count == 0 && !_selectableGO.contains(go.GetInstanceID()))
+					updateTarget(go);
 			}
 		}
 	}
