@@ -3,7 +3,6 @@ using UnityEngine.Tilemaps;
 using FYFY;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 public class LevelSystem : FSystem {
 	private bool levelInit = false;
@@ -21,12 +20,9 @@ public class LevelSystem : FSystem {
 		new AllOfComponents(typeof(Cell), typeof(Health))
 	);
 
-	private Family _playerHealthGO = FamilyManager.getFamily(
-		new AllOfComponents(typeof(Player), typeof(Health))
-	);
-
-	private Family _playerEnergyGO = FamilyManager.getFamily(
-		new AllOfComponents(typeof(Player), typeof(Energy))
+	private Family _playerGO = FamilyManager.getFamily(
+		new AllOfComponents(typeof(Player)),
+		new AnyOfComponents(typeof(Health), typeof(Energy))
 	);
 
 	private Family _energizerGO = FamilyManager.getFamily(
@@ -62,48 +58,75 @@ public class LevelSystem : FSystem {
 				}
 			}
 
-			levelInit = true;
-		} else {
-			//Update health
-			foreach (GameObject go in _playerHealthGO) {
-				bool init = false;
-				Health playerHealth = go.GetComponent<Health>();
+			foreach (GameObject go in _playerGO) {
+				Player player = go.GetComponent<Player>();
 
-				if (playerHealth.maxHealthPoints == 0)
-					init = true;
-				playerHealth.healthPoints = 0;
+				foreach (GameObject buyable in player.levelBuyablePrefabs) {
+					//Create a new visual
+					GameObject myUI = Object.Instantiate<GameObject>(player.unitUIVisual, player.unitContainer.transform);
+					GameObjectManager.bind(myUI);
 
-				foreach (GameObject cellGO in _cellsGO) {
-					Health cellHealth = cellGO.GetComponent<Health>();
+					//Add height to container (each new element is 100px height here)
+					RectTransform rt = player.unitContainer.GetComponent<RectTransform>();
+					rt.sizeDelta = new Vector2(rt.sizeDelta.x, rt.sizeDelta.y + 100);
 
-					if (init)
-						playerHealth.maxHealthPoints += cellHealth.maxHealthPoints;
-					playerHealth.healthPoints += cellHealth.healthPoints;
+					SpriteRenderer sr = buyable.GetComponentInChildren<SpriteRenderer>();
+					Info info = buyable.GetComponent<Info>();
+
+					//Update UI image and text
+					UIUnit ui = myUI.GetComponent<UIUnit>();
+					ui.image.sprite = sr.sprite;
+					ui.text.text = info.myName;
+
+					ui.prefab = buyable;
 				}
 			}
 
-			//Update energy
-			foreach (GameObject go in _playerEnergyGO) {
-				Energy energy = go.GetComponent<Energy>();
+			levelInit = true;
+		} else {
+			foreach (GameObject go in _playerGO) {
+				Health playerHealth = go.GetComponent<Health>();
+				Energy playerEnergy = go.GetComponent<Energy>();
 
-				foreach (GameObject energizerGO in _energizerGO) {
-					Energizer energizer = energizerGO.GetComponent<Energizer>();
+				//Update health
+				if (playerHealth != null) {
+					bool init = false;
 
-					energizer.reloadProgress += Time.deltaTime;
+					if (playerHealth.maxHealthPoints == 0)
+						init = true;
+					playerHealth.healthPoints = 0;
 
-					if (energizer.reloadProgress >= energizer.reloadTime) {
-						energy.energyPoints += energizer.recoverPoints;
+					foreach (GameObject cellGO in _cellsGO) {
+						Health cellHealth = cellGO.GetComponent<Health>();
 
-						energizer.reloadProgress = 0f;
+						if (init)
+							playerHealth.maxHealthPoints += cellHealth.maxHealthPoints;
+
+						playerHealth.healthPoints += cellHealth.healthPoints;
 					}
 				}
 
-				//Cap at max
-				if (energy.energyPoints > energy.maxEnergyPoints)
-					energy.energyPoints = energy.maxEnergyPoints;
-				
-				if (energy.energyPoints < 0)
-					energy.energyPoints = 0f;
+				//Update energy
+				if (playerEnergy != null) {
+					foreach (GameObject energizerGO in _energizerGO) {
+						Energizer energizer = energizerGO.GetComponent<Energizer>();
+
+						energizer.reloadProgress += Time.deltaTime;
+
+						if (energizer.reloadProgress >= energizer.reloadTime) {
+							playerEnergy.energyPoints += energizer.recoverPoints;
+
+							energizer.reloadProgress = 0f;
+						}
+					}
+
+					//Cap at max
+					if (playerEnergy.energyPoints > playerEnergy.maxEnergyPoints)
+						playerEnergy.energyPoints = playerEnergy.maxEnergyPoints;
+
+					if (playerEnergy.energyPoints < 0)
+						playerEnergy.energyPoints = 0f;
+				}
 			}
 
 			//Check cell spawn position of cell is dead
@@ -147,8 +170,8 @@ public class LevelSystem : FSystem {
 					if (factory.currentWave < factory.waves.Count) {
 						Wave wave = factory.waves[factory.currentWave];
 
-						List<Vector3> spawnArea = getAllWorldPosition(factory.spawnArea);
-						List<Vector3> targetArea = getAllWorldPosition(factory.spawnTargetArea);
+						List<Vector3> spawnArea = TilemapUtils.getAllWorldPosition(factory.spawnArea);
+						List<Vector3> targetArea = TilemapUtils.getAllWorldPosition(factory.spawnTargetArea);
 
 						//Spawn each group of entity
 						foreach (Group g in wave.groups) {
@@ -196,16 +219,21 @@ public class LevelSystem : FSystem {
 			if (_attackersGO.Count == 0) {
 				levelStatus = "Victory";
 			} else {
-				int nb = 0;
+				int nbHealth = 0;
+				int nbHealthZero = 0;
 
-				foreach (GameObject go in _playerHealthGO) {
+				foreach (GameObject go in _playerGO) {
 					Health playerHealth = go.GetComponent<Health>();
 
-					if (playerHealth.healthPoints == 0)
-						nb += 1;
+					if (playerHealth != null) {
+						nbHealth += 1;
+
+						if (playerHealth.healthPoints == 0)
+							nbHealthZero += 1;
+					}
 				}
 
-				if (nb == _playerHealthGO.Count)
+				if (nbHealthZero == nbHealth)
 					levelStatus = "Defeat";
 			}
 		}
@@ -225,19 +253,5 @@ public class LevelSystem : FSystem {
 			default:
 				break;
 		}
-	}
-
-	private List<Vector3> getAllWorldPosition(Tilemap tilemap) {
-		List<Vector3> tileWorldLocations = new List<Vector3>();
-		
-		foreach (var pos in tilemap.cellBounds.allPositionsWithin) {
-			Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
-			Vector3 place = tilemap.CellToWorld(localPlace);
-			if (tilemap.HasTile(localPlace)) {
-				tileWorldLocations.Add(place);
-			}
-		}
-
-		return tileWorldLocations;
 	}
 }

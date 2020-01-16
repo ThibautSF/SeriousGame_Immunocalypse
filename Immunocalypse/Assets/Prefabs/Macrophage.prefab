@@ -92,6 +92,9 @@ GameObject:
   - component: {fileID: 6921844512463759176}
   - component: {fileID: 7582608248116052937}
   - component: {fileID: 3548276240398516118}
+  - component: {fileID: 6811656873089331747}
+  - component: {fileID: 5753160426786043483}
+  - component: {fileID: -5776849594546513739}
   - component: {fileID: 6286103260731557495}
   - component: {fileID: 726805172960857515}
   - component: {fileID: -7454212867195251416}
@@ -168,6 +171,45 @@ MonoBehaviour:
   m_Script: {fileID: -571295319, guid: caa2e252aabdbc9f9a6ee487703e2522, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6811656873089331747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836106904873615764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 065c76b5bd4ba640e9ee4256767c5307, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myName: Macrophage
+  myDescription: 
+--- !u!114 &5753160426786043483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836106904873615764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 940707ea7491c665cadcd715dc34f866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5776849594546513739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836106904873615764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d157c966d137ef07b7f25afc875e351, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyPrice: 100
 --- !u!114 &6286103260731557495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,6 +224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2.5
   newTargetPosition: 0
+  forcedTarget: 0
   targetPosition: {x: 0, y: 0, z: 0}
   targetObject: {fileID: 0}
   path: []

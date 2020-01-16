@@ -572,6 +572,7 @@ GameObject:
   - component: {fileID: -122569566573103931}
   - component: {fileID: 1738326097123376897}
   - component: {fileID: 8984258993165271167}
+  - component: {fileID: -9017543116281547968}
   - component: {fileID: 225859924813892374}
   - component: {fileID: 42280804593489587}
   - component: {fileID: 5373304577161317300}
@@ -659,6 +660,20 @@ MonoBehaviour:
   m_Script: {fileID: -571295319, guid: caa2e252aabdbc9f9a6ee487703e2522, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-9017543116281547968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5828499375310798995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 065c76b5bd4ba640e9ee4256767c5307, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myName: Virus
+  myDescription: 
 --- !u!114 &225859924813892374
 MonoBehaviour:
   m_ObjectHideFlags: 0

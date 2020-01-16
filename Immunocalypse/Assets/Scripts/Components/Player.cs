@@ -1,5 +1,14 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Player : MonoBehaviour {
-	// Advice: FYFY component aims to contain only public members (according to Entity-Component-System paradigm).
+	[Header("Buyable Visuals Settings")]
+	public GameObject unitContainer;
+	public GameObject unitUIVisual;
+
+	[Header("Buyable Units Settings")]
+	public Tilemap spawnArea;
+	public List<GameObject> levelBuyablePrefabs;
 }

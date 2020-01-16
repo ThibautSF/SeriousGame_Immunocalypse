@@ -171,7 +171,9 @@ GameObject:
   - component: {fileID: 176223730117397247}
   - component: {fileID: 381152335157550284}
   - component: {fileID: 900617569531361357}
+  - component: {fileID: 6753385060859594450}
   - component: {fileID: 2596167432376935937}
+  - component: {fileID: -3288648820667134453}
   - component: {fileID: 3637164067226369523}
   - component: {fileID: 6281042736320014433}
   - component: {fileID: 8021849483987678767}
@@ -235,6 +237,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &6753385060859594450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8952695840164657680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 065c76b5bd4ba640e9ee4256767c5307, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myName: Lymphocyte
+  myDescription: 
 --- !u!114 &2596167432376935937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,6 +263,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e66a8f02fb8859eb1dce2c1099a02f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-3288648820667134453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8952695840164657680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d157c966d137ef07b7f25afc875e351, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyPrice: 200
 --- !u!114 &3637164067226369523
 MonoBehaviour:
   m_ObjectHideFlags: 0

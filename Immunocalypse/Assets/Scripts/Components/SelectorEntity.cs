@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 public class SelectorEntity : MonoBehaviour {
+	public bool hasSelected = true;
 	public bool isSelecting = false;
 	public Vector3 mousePosition1;
 

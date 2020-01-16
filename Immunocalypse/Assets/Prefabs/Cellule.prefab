@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7897563604697780616}
   - component: {fileID: 3788430554841423666}
   - component: {fileID: 7175492208862208826}
+  - component: {fileID: 6131474636294033238}
   - component: {fileID: 816867292150943846}
   - component: {fileID: 3846952198760730949}
   - component: {fileID: 126320717779605418}
@@ -74,6 +75,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.75
+--- !u!114 &6131474636294033238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429197590986318183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 065c76b5bd4ba640e9ee4256767c5307, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myName: Cellule
+  myDescription: 
 --- !u!114 &816867292150943846
 MonoBehaviour:
   m_ObjectHideFlags: 0
