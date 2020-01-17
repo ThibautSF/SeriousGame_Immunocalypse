@@ -1,6 +1,12 @@
 ﻿using UnityEngine;
 
-//Component to determine how long an entity take to grow between his baseSize and finalSize
+/// <summary>
+/// Component to add growing functionality to an entity
+/// </summary>
+/// <remarks>
+/// Grow between his baseSize and finalSize
+/// Also need Life entity
+/// </remarks>
 public class Growth : MonoBehaviour {
 	public bool hasGrewUp = false;
 	

@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+/// <summary>
+/// Component to add the factory functionality for the level
+/// </summary>
+/// <remarks>
+/// Allow to generate waves of units
+/// </remarks>
 public class FactoryLevel : MonoBehaviour {
 	public Tilemap spawnArea;
 	public Tilemap spawnTargetArea;

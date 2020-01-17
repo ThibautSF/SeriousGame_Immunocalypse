@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Component to add moving functionality to an entity
+/// </summary>
 public class Move : MonoBehaviour {
 	public float speed = 2.5f;
 	[HideInInspector]

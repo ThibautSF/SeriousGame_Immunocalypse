@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Component to mark a grid map layer
+/// </summary>
 public class MapLayer : MonoBehaviour {
 	[Header("Flux")]
 	public bool hasflux = false;

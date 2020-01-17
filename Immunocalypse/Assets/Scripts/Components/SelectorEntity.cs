@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Component to add box selection functionality
+/// </summary>
 public class SelectorEntity : MonoBehaviour {
 	public bool hasSelected = true;
 	public bool isSelecting = false;
