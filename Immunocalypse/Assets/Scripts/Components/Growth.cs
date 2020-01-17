@@ -2,6 +2,8 @@
 
 //Component to determine how long an entity take to grow between his baseSize and finalSize
 public class Growth : MonoBehaviour {
+	public bool hasGrewUp = false;
+	
 	public float growthTime = 2f;
 	public float growthProgress = 0f;
 
