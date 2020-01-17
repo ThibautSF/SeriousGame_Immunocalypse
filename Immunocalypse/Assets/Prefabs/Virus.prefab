@@ -1028,7 +1028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79e3aebd4a57d2f9b91c17366cca7b64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.5
+  speed: 1
   newTargetPosition: 0
   forcedTarget: 0
   targetPosition: {x: 0, y: 0, z: 0}
@@ -1077,6 +1077,7 @@ MonoBehaviour:
   timeSinceLastEffect: 1
   effectFreq: 1
   duplicateOnKill: 1
+  percent: 0.15
   prefab: {fileID: 5828499375310798995}
 --- !u!114 &2279084923024759981
 MonoBehaviour:

@@ -46,7 +46,7 @@ public class EatingSystem : FSystem {
 								GameObjectManager.unbind(target);
 								Object.Destroy(target);
 
-								if (eat.duplicateOnKill) {
+								if (eat.duplicateOnKill && Random.value <= eat.percent) {
 									//Debug.Log(pos);
 									GameObject myDuplicate = Object.Instantiate<GameObject>(eat.prefab, pos, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
 

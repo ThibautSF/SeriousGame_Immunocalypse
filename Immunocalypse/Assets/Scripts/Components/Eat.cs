@@ -7,5 +7,6 @@ public class Eat : MonoBehaviour {
 	public float effectFreq = 1f;
 
 	public bool duplicateOnKill = false;
+	public float percent = 0f;
 	public GameObject prefab;
 }

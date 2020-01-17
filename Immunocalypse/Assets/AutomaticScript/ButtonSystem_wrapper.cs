@@ -29,9 +29,9 @@ public class ButtonSystem_wrapper : MonoBehaviour
 		MainLoop.callAppropriateSystemMethod ("ButtonSystem", "exitGame", null);
 	}
 
-	public void startGame()
+	public void startGame(System.String levelName)
 	{
-		MainLoop.callAppropriateSystemMethod ("ButtonSystem", "startGame", null);
+		MainLoop.callAppropriateSystemMethod ("ButtonSystem", "startGame", levelName);
 	}
 
 }

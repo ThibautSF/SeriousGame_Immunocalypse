@@ -37,8 +37,8 @@ public class ButtonSystem : FSystem {
 		Application.Quit();
 	}
 
-	public void startGame() {
-		//SceneManager.LoadScene("SampleScene");
-		GameObjectManager.loadScene("SampleScene");
+	public void startGame(string levelName) {
+		//SceneManager.LoadScene(levelName);
+		GameObjectManager.loadScene(levelName);
 	}
 }

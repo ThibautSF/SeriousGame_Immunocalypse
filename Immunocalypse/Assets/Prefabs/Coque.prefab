@@ -144,6 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 065c76b5bd4ba640e9ee4256767c5307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myName: 
+  myDescription: 
 --- !u!114 &8965247356380039724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79e3aebd4a57d2f9b91c17366cca7b64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 1.5
   newTargetPosition: 0
   forcedTarget: 0
   targetPosition: {x: 0, y: 0, z: 0}
