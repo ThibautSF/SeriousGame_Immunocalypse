@@ -38,6 +38,14 @@ public class FactorySystem : FSystem {
 						float f = mySpawn.GetComponent<Growth>().baseSize;
 					}
 
+					//Object spawned get predator values of parent (if both have the component)
+					Predator predatorFactory = go.GetComponent<Predator>();
+					Predator predatorSpawn = mySpawn.GetComponent<Predator>();
+
+					if (predatorFactory != null && predatorSpawn != null) {
+						predatorSpawn.myPreys = predatorFactory.myPreys;
+					}
+
 					//Reinit factory if object spawned have a factory
 					Factory[] spawnFactories = mySpawn.GetComponents<Factory>();
 					foreach (Factory spawnFactory in spawnFactories) {
