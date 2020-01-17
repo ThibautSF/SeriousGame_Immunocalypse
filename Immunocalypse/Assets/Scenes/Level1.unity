@@ -454,13 +454,13 @@ GameObject:
   - component: {fileID: 129450823}
   - component: {fileID: 129450826}
   - component: {fileID: 129450827}
-  - component: {fileID: 129450828}
   - component: {fileID: 129450830}
   - component: {fileID: 129450831}
   - component: {fileID: 129450832}
   - component: {fileID: 129450833}
   - component: {fileID: 129450834}
   - component: {fileID: 129450829}
+  - component: {fileID: 129450828}
   m_Layer: 8
   m_Name: Main_Loop
   m_TagString: Untagged
@@ -502,9 +502,9 @@ MonoBehaviour:
       PublicKeyToken=null
     _typeFullName: UISystem
     _pause: 0
-  - _typeAssemblyQualifiedName: LymphocyteSystem, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    _typeFullName: LymphocyteSystem
+  - _typeAssemblyQualifiedName: FactorySystem, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    _typeFullName: FactorySystem
     _pause: 0
   - _typeAssemblyQualifiedName: GrowthAndLiveSystem, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -590,7 +590,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 129450822}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 565abd2746c004b19a86e15c92a86815, type: 3}
+  m_Script: {fileID: 11500000, guid: f19ab9f68db197ef08fe3320b44183d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &129450829

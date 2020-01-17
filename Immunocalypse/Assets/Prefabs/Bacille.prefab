@@ -9,11 +9,17 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6708707494559548880}
+  - component: {fileID: 8920847116267457930}
   - component: {fileID: 5315013739682345915}
   - component: {fileID: -4313570625597794887}
   - component: {fileID: 4899421454096834234}
   - component: {fileID: 9147157596371298496}
+  - component: {fileID: -3467797852855448151}
   - component: {fileID: 4201807422811564393}
+  - component: {fileID: -7456653897194095430}
+  - component: {fileID: -6717309300023323145}
+  - component: {fileID: 965758085227037650}
+  - component: {fileID: -195405011701837496}
   m_Layer: 0
   m_Name: Bacille
   m_TagString: Untagged
@@ -36,6 +42,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &8920847116267457930
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2876211281056765373}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.5
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!70 &5315013739682345915
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -46,11 +73,11 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.05, y: -0.05}
-  m_Size: {x: 4, y: 1.2}
+  m_Offset: {x: -0.01, y: -0.01}
+  m_Size: {x: 0.8, y: 0.26}
   m_Direction: 1
 --- !u!114 &-4313570625597794887
 MonoBehaviour:
@@ -64,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 065c76b5bd4ba640e9ee4256767c5307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myName: 
+  myName: "Bact\xE9rie A"
   myDescription: 
 --- !u!114 &4899421454096834234
 MonoBehaviour:
@@ -96,6 +123,20 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   targetObject: {fileID: 0}
   path: []
+--- !u!114 &-3467797852855448151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2876211281056765373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a29b68e4342c0b1d390d7dc0f41a30e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myPreys:
+  - Cell
 --- !u!114 &4201807422811564393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,7 +149,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 087e11892f93a25108ab7461850a73d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myType: Bacteria
+  myType: Bacteria A
+--- !u!114 &-7456653897194095430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2876211281056765373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adf79c4af892eeb25b947cd050d66c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reloadTime: 2
+  reloadProgress: 0
+  prefab: {fileID: 8028187232484168980, guid: 876826fe24a6596a3bee035315f9a2dd, type: 3}
+--- !u!114 &-6717309300023323145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2876211281056765373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adf79c4af892eeb25b947cd050d66c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reloadTime: 30
+  reloadProgress: 0
+  prefab: {fileID: 2876211281056765373}
+--- !u!114 &965758085227037650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2876211281056765373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55aaaa57954859d66baf58e89f839d70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealthPoints: 100
+  healthPoints: 100
+  myUI:
+    mySlider: {fileID: 0}
+    myText: {fileID: 0}
+--- !u!114 &-195405011701837496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2876211281056765373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4adf594e9fda15a55ad0713773912150, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recoverPoints: -2
+  reloadTime: 1
+  reloadProgress: 0
 --- !u!1 &9028259766063040813
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +238,7 @@ Transform:
   m_GameObject: {fileID: 9028259766063040813}
   m_LocalRotation: {x: 0, y: 0, z: 0.35020736, w: 0.9366722}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 6708707494559548880}
   m_RootOrder: 0
@@ -179,7 +282,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fcc86f5dc089edfa5b684ef85b84e7e1, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5754717, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
