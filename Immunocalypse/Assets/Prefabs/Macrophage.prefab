@@ -256,7 +256,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPreys:
-  - Virus
+  - Virus A
+  - Virus B
 --- !u!114 &5573377863912184143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,6 +274,7 @@ MonoBehaviour:
   timeSinceLastEffect: 1
   effectFreq: 1
   duplicateOnKill: 0
+  percent: 0
   prefab: {fileID: 0}
 --- !u!1 &6346281770198262633
 GameObject:

@@ -1002,7 +1002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 065c76b5bd4ba640e9ee4256767c5307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myName: Virus
+  myName: Virus A
   myDescription: 
 --- !u!114 &225859924813892374
 MonoBehaviour:
@@ -1046,7 +1046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 087e11892f93a25108ab7461850a73d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myType: Virus
+  myType: Virus A
 --- !u!114 &8447398523680714733
 MonoBehaviour:
   m_ObjectHideFlags: 0
