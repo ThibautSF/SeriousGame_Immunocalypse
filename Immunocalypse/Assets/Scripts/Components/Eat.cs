@@ -14,7 +14,10 @@ public class Eat : MonoBehaviour {
 	public float timeSinceLastEffect = 1f;
 	public float effectFreq = 1f;
 
-	public bool duplicateOnKill = false;
-	public float percent = 0f;
+	public bool infectOnKill = false;
+	public float timerFactory = 0f;
+	public string newPreyTag = "";
+	public bool applyColor = false;
+	public Color color;
 	public GameObject prefab;
 }

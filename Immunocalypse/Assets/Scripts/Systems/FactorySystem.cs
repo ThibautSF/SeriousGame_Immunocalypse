@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using FYFY;
+using FYFY_plugins.TriggerManager;
 
 public class FactorySystem : FSystem {
 	private Family _factoryGO = FamilyManager.getFamily(
 		new AllOfComponents(typeof(Factory)),
-		new AnyOfComponents(typeof(Lymphocyte), typeof(Bacteria))
+		new NoneOfComponents(typeof(MapLayer))
 	);
 
 	// Use this to update member variables when system pause. 
@@ -28,6 +29,7 @@ public class FactorySystem : FSystem {
 
 				if (factory.reloadProgress >= factory.reloadTime) {
 					//Instantiate and bind to FYFY a new instance of antibodies drift (factory prefab)
+					//factory.prefab.GetType();
 					GameObject mySpawn = Object.Instantiate<GameObject>(factory.prefab, tr.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
 					GameObjectManager.bind(mySpawn);
 
@@ -57,9 +59,19 @@ public class FactorySystem : FSystem {
 						Vector2 posTarget = new Vector2(Random.Range(tr.position.x - 1f, tr.position.x + 1f), Random.Range(tr.position.y -1f, tr.position.y -1f));
 
 						mv.targetPosition = posTarget;
-						mv.forcedTarget = true;
+						mv.targetObject = null;
 						mv.newTargetPosition = true;
+						mv.forcedTarget = true;
 					}
+
+					/*
+					WARNING: should not do that but looks like that even if instance come frome a prefab, it is instanciated with a Triggered2D...
+					Looks like to come from cases where an GO store it's own prefab, but instead store himself, 
+					so we don't instantiate a prefab but a copy of the object
+					
+					If this line is commented, FYFY will generate an error
+					*/
+					Object.Destroy(mySpawn.GetComponent<Triggered2D>());
 
 					//mySpawn.GetComponent<Transform>().localScale = new Vector3(0f, 0f, 0f);
 					//mySpawn.SetActive(true);

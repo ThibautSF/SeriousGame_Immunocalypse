@@ -338,4 +338,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPreys:
-  - ' Virus A'
+  - Virus A

@@ -17,7 +17,8 @@ public class LevelSystem : FSystem {
 	);
 
 	private Family _cellsGO = FamilyManager.getFamily(
-		new AllOfComponents(typeof(Cell), typeof(Health))
+		new AllOfComponents(typeof(Cell), typeof(Health)),
+		new NoneOfComponents(typeof(Infected))
 	);
 
 	private Family _playerGO = FamilyManager.getFamily(
@@ -30,7 +31,7 @@ public class LevelSystem : FSystem {
 	);
 
 	private Family _attackersGO = FamilyManager.getFamily(
-		new AnyOfComponents(typeof(FactoryLevel), typeof(Virus), typeof(Bacteria))
+		new AnyOfComponents(typeof(FactoryLevel), typeof(Virus), typeof(Bacteria), typeof(Infected))
 	);
 
 	// Use to process your families.
@@ -198,6 +199,7 @@ public class LevelSystem : FSystem {
 								Move mv = mySpawn.GetComponent<Move>();
 								if (mv != null) {
 									mv.targetPosition = target;
+									mv.targetObject = null;
 									mv.newTargetPosition = true;
 									mv.forcedTarget = true;
 								}

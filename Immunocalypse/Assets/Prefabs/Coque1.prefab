@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 3798348018677992925}
   - component: {fileID: 4942901353922518855}
   m_Layer: 0
-  m_Name: Coque
+  m_Name: Coque1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,7 +35,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2178374776151284658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.0327268, y: 3.0030532, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 948841484600012855}
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reloadTime: 30
   reloadProgress: 0
-  prefab: {fileID: 2178374776151284658}
+  prefab: {fileID: 1556192119056853604, guid: ef99edae155ab786dbbaab2182449cbc, type: 3}
 --- !u!114 &3798348018677992925
 MonoBehaviour:
   m_ObjectHideFlags: 0

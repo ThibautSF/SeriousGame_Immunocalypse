@@ -43,28 +43,65 @@ public class EatingSystem : FSystem {
 
 							if (collidedH.healthPoints <= 0) {
 								Vector3 pos = target.transform.position;
-								GameObjectManager.unbind(target);
-								Object.Destroy(target);
 
-								if (eat.duplicateOnKill && Random.value <= eat.percent) {
+								if (eat.infectOnKill) {
 									//Debug.Log(pos);
-									GameObject myDuplicate = Object.Instantiate<GameObject>(eat.prefab, pos, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
+									prey.myType = eat.newPreyTag;
 
-									//WARNING: should not do that but looks like that even if instance come frome a prefab, it is instanciated with a Triggered2D...
-									//If this line is commented, FYFY will generate an error
-									Object.Destroy(myDuplicate.GetComponent<Triggered2D>());
+									GameObjectManager.addComponent<Infected>(target, new { myParasit = go });
+									GameObjectManager.addComponent<Factory>(target, new { reloadTime = eat.timerFactory, prefab = eat.prefab });
+									collidedH.healthPoints = collidedH.maxHealthPoints;
 
-									GameObjectManager.bind(myDuplicate);
-
-									Move mv = myDuplicate.GetComponent<Move>();
-									if (mv != null) {
-										Vector2 posTarget = new Vector2(Random.Range(pos.x - 1f, pos.x + 1f), Random.Range(pos.y -1f, pos.y -1f));
-
-										mv.targetPosition = posTarget;
-										mv.forcedTarget = true;
-										mv.newTargetPosition = true;
+									Energizer collidedE = target.GetComponent<Energizer>();
+									Energizer e = go.GetComponent<Energizer>();
+									if (collidedE != null) {
+										if (e != null) {
+											collidedE.recoverPoints = e.recoverPoints;
+											collidedE.reloadTime = e.reloadTime;
+										} else {
+											GameObjectManager.removeComponent(collidedE);
+										}
+									} else {
+										if (e != null) {
+											GameObjectManager.addComponent<Energizer>(target, new { recoverPoints = e.recoverPoints, reloadTime = e.reloadTime });
+										}
 									}
+
+									if (eat.applyColor) {
+										Renderer r = target.GetComponentInChildren<Renderer>();
+
+										if (r != null) {
+											r.material.color = eat.color;
+										}
+									}
+								} else {
+									GameObjectManager.unbind(target);
+									Object.Destroy(target);
 								}
+
+								Move mv = go.GetComponent<Move>();
+								if (mv != null) {
+									mv.targetObject = null;
+								}
+
+								/* Previous functionnality of duplication on kill * /
+								GameObject myDuplicate = Object.Instantiate<GameObject>(eat.prefab, pos, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
+
+								//WARNING: should not do that but looks like that even if instance come frome a prefab, it is instanciated with a Triggered2D...
+								//If this line is commented, FYFY will generate an error
+								Object.Destroy(myDuplicate.GetComponent<Triggered2D>());
+
+								GameObjectManager.bind(myDuplicate);
+
+								Move mv = myDuplicate.GetComponent<Move>();
+								if (mv != null) {
+									Vector2 posTarget = new Vector2(Random.Range(pos.x - 1f, pos.x + 1f), Random.Range(pos.y -1f, pos.y -1f));
+
+									mv.targetPosition = posTarget;
+									mv.forcedTarget = true;
+									mv.newTargetPosition = true;
+								}
+								/* */
 							}
 
 							effectApplied = true;
