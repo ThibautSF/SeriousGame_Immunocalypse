@@ -33,19 +33,39 @@ public class EatingSystem : FSystem {
 					Prey prey = target.GetComponent<Prey>();
 					
 					if (predator.myPreys.Contains(prey.myType)) {
-						//TODO eat the target
+						//"eat" the target
 						Transform collidedTr = target.GetComponent<Transform>();
 
 						Health collidedH = target.GetComponent<Health>();
-
-						//Debug.Log(go.name + " " + target.name);
 
 						if (eat.timeSinceLastEffect >= eat.effectFreq) {
 							collidedH.healthPoints -= eat.damage;
 
 							if (collidedH.healthPoints <= 0) {
+								Vector3 pos = target.transform.position;
 								GameObjectManager.unbind(target);
 								Object.Destroy(target);
+
+								if (eat.duplicateOnKill) {
+									//Debug.Log(pos);
+									GameObject myDuplicate = Object.Instantiate<GameObject>(eat.prefab, pos, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
+
+									//WARNING: should not do that but looks like that even if instance come frome a prefab, it is instanciated with a Triggered2D...
+									//If this line is commented, FYFY will generate an error
+									Object.Destroy(myDuplicate.GetComponent<Triggered2D>());
+
+									GameObjectManager.bind(myDuplicate);
+
+									Move mv = myDuplicate.GetComponent<Move>();
+									if (mv != null) {
+										//Vector3 posTarget = new Vector3((pos.x - 0.5f) * 5f, (pos.y - 0.5f) * 5f);
+										Vector2 posTarget = new Vector2(Random.Range(pos.x - 1f, pos.x + 1f), Random.Range(pos.y -1f, pos.y -1f));
+
+										mv.targetPosition = posTarget;
+										mv.forcedTarget = true;
+										mv.newTargetPosition = true;
+									}
+								}
 							}
 
 							effectApplied = true;
