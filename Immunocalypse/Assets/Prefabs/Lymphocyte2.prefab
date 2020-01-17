@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 6233214461281990835}
   - component: {fileID: 524570958419805740}
   - component: {fileID: 9149064744243422975}
-  - component: {fileID: 622392014088883957}
   - component: {fileID: 7531914262570712333}
-  - component: {fileID: 996929909312514207}
-  - component: {fileID: 3867506818134734545}
   - component: {fileID: 5803332589775327017}
+  - component: {fileID: 996929909312514207}
+  - component: {fileID: 622392014088883957}
+  - component: {fileID: 3867506818134734545}
   m_Layer: 0
   m_Name: Lymphocyte2
   m_TagString: Untagged
@@ -104,19 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e66a8f02fb8859eb1dce2c1099a02f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &622392014088883957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2792561629115431662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d157c966d137ef07b7f25afc875e351, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  energyPrice: 500
 --- !u!114 &7531914262570712333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,6 +122,20 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   targetObject: {fileID: 0}
   path: []
+--- !u!114 &5803332589775327017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2792561629115431662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a29b68e4342c0b1d390d7dc0f41a30e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myPreys:
+  - Virus B
 --- !u!114 &996929909312514207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +151,19 @@ MonoBehaviour:
   reloadTime: 0.5
   reloadProgress: 0
   prefab: {fileID: 1450122561964289412, guid: 7368d3dd7ec4a0ab0865ad3bd4596b46, type: 3}
+--- !u!114 &622392014088883957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2792561629115431662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d157c966d137ef07b7f25afc875e351, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyPrice: 500
 --- !u!114 &3867506818134734545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,20 +179,6 @@ MonoBehaviour:
   controlable: 1
   isSelected: 0
   selectionVisual: {fileID: 7469360876975921171}
---- !u!114 &5803332589775327017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2792561629115431662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a29b68e4342c0b1d390d7dc0f41a30e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myPreys:
-  - Virus B
 --- !u!1 &3346052549272514398
 GameObject:
   m_ObjectHideFlags: 0

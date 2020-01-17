@@ -1535,8 +1535,8 @@ GameObject:
   - component: {fileID: 2384500963084999013}
   - component: {fileID: 2372931676725682483}
   - component: {fileID: 2547353508418043030}
-  - component: {fileID: 7592473746047803793}
   - component: {fileID: 6266480281723798984}
+  - component: {fileID: 7592473746047803793}
   - component: {fileID: 7760468001955087072}
   - component: {fileID: 4354097964475496072}
   - component: {fileID: 6452440193468506168}
@@ -1674,19 +1674,6 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   targetObject: {fileID: 0}
   path: []
---- !u!114 &7592473746047803793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8299799737674656438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 087e11892f93a25108ab7461850a73d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myType: Virus B
 --- !u!114 &6266480281723798984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1701,6 +1688,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myPreys:
   - Cell
+--- !u!114 &7592473746047803793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8299799737674656438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 087e11892f93a25108ab7461850a73d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myType: Virus B
 --- !u!114 &7760468001955087072
 MonoBehaviour:
   m_ObjectHideFlags: 0

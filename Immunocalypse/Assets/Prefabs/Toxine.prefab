@@ -1534,8 +1534,8 @@ GameObject:
   - component: {fileID: 4838373952106436088}
   - component: {fileID: 4418142137740420807}
   - component: {fileID: 2542958489682614047}
-  - component: {fileID: 4877024845979724526}
   - component: {fileID: 1661935312884425478}
+  - component: {fileID: 4877024845979724526}
   - component: {fileID: 5381824364613401194}
   - component: {fileID: 8644007080734260546}
   m_Layer: 0
@@ -1654,20 +1654,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b4bf2f01fd876248fafdb493be8e04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4877024845979724526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8028187232484168980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9456bddb89dd8fe799c62846db2605d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifeTime: 2
-  lifeProgress: 0
 --- !u!114 &1661935312884425478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1685,6 +1671,20 @@ MonoBehaviour:
   growthProgress: 0
   baseSize: 0
   finalSize: 1
+--- !u!114 &4877024845979724526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8028187232484168980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9456bddb89dd8fe799c62846db2605d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 2
+  lifeProgress: 0
 --- !u!114 &5381824364613401194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1714,8 +1714,11 @@ MonoBehaviour:
   damage: 5
   timeSinceLastEffect: 1
   effectFreq: 1
-  duplicateOnKill: 0
-  percent: 0
+  infectOnKill: 0
+  timerFactory: 0
+  newPreyTag: 
+  applyColor: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
   prefab: {fileID: 0}
 --- !u!1 &8720266425647411223
 GameObject:

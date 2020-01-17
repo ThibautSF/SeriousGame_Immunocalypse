@@ -93,11 +93,11 @@ GameObject:
   - component: {fileID: 3948075458198741575}
   - component: {fileID: 7425614110136245464}
   - component: {fileID: 2212028107663621131}
-  - component: {fileID: 7559745025192170497}
   - component: {fileID: 633897232360040441}
-  - component: {fileID: 7899168925938430571}
-  - component: {fileID: 6189800510192069669}
   - component: {fileID: 3513693980595607005}
+  - component: {fileID: 7899168925938430571}
+  - component: {fileID: 7559745025192170497}
+  - component: {fileID: 6189800510192069669}
   m_Layer: 0
   m_Name: Lymphocyte3
   m_TagString: Untagged
@@ -184,19 +184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e66a8f02fb8859eb1dce2c1099a02f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7559745025192170497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5083330536116215834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d157c966d137ef07b7f25afc875e351, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  energyPrice: 500
 --- !u!114 &633897232360040441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +202,20 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   targetObject: {fileID: 0}
   path: []
+--- !u!114 &3513693980595607005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5083330536116215834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a29b68e4342c0b1d390d7dc0f41a30e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myPreys:
+  - Bacteria A
 --- !u!114 &7899168925938430571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,6 +231,19 @@ MonoBehaviour:
   reloadTime: 0.5
   reloadProgress: 0
   prefab: {fileID: 1450122561964289412, guid: 7368d3dd7ec4a0ab0865ad3bd4596b46, type: 3}
+--- !u!114 &7559745025192170497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5083330536116215834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d157c966d137ef07b7f25afc875e351, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyPrice: 500
 --- !u!114 &6189800510192069669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,20 +259,6 @@ MonoBehaviour:
   controlable: 1
   isSelected: 0
   selectionVisual: {fileID: 568071571035144935}
---- !u!114 &3513693980595607005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5083330536116215834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a29b68e4342c0b1d390d7dc0f41a30e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myPreys:
-  - Bacteria A
 --- !u!1 &5630945536203322794
 GameObject:
   m_ObjectHideFlags: 0

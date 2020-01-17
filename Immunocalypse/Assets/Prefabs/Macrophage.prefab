@@ -94,11 +94,12 @@ GameObject:
   - component: {fileID: 3548276240398516118}
   - component: {fileID: 6811656873089331747}
   - component: {fileID: 5753160426786043483}
-  - component: {fileID: -5776849594546513739}
   - component: {fileID: 6286103260731557495}
-  - component: {fileID: 726805172960857515}
   - component: {fileID: -7454212867195251416}
+  - component: {fileID: 5876071863405789031}
   - component: {fileID: 5573377863912184143}
+  - component: {fileID: -5776849594546513739}
+  - component: {fileID: 726805172960857515}
   m_Layer: 0
   m_Name: Macrophage
   m_TagString: Untagged
@@ -197,19 +198,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 940707ea7491c665cadcd715dc34f866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-5776849594546513739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1836106904873615764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d157c966d137ef07b7f25afc875e351, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  energyPrice: 100
 --- !u!114 &6286103260731557495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,21 +216,6 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   targetObject: {fileID: 0}
   path: []
---- !u!114 &726805172960857515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1836106904873615764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb11eba83c5bce7e8b8e9354a310b637, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controlable: 1
-  isSelected: 0
-  selectionVisual: {fileID: 6346281770198262633}
 --- !u!114 &-7454212867195251416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +234,20 @@ MonoBehaviour:
   - Bacteria A
   - Bacteria B
   - Infected Cell
+--- !u!114 &5876071863405789031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836106904873615764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59bbb14d0083db76b8ca82bf257ba1f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeSinceLastEffect: 1
+  effectFreq: 1
 --- !u!114 &5573377863912184143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,7 +266,37 @@ MonoBehaviour:
   infectOnKill: 0
   timerFactory: 0
   newPreyTag: 
+  applyColor: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
   prefab: {fileID: 0}
+--- !u!114 &-5776849594546513739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836106904873615764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d157c966d137ef07b7f25afc875e351, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyPrice: 100
+--- !u!114 &726805172960857515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836106904873615764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb11eba83c5bce7e8b8e9354a310b637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlable: 1
+  isSelected: 0
+  selectionVisual: {fileID: 6346281770198262633}
 --- !u!1 &6346281770198262633
 GameObject:
   m_ObjectHideFlags: 0
