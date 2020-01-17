@@ -150,7 +150,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d246a06c4944611f581e381852d7e93c, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.48235294, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 065c76b5bd4ba640e9ee4256767c5307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myName: Lymphocyte
+  myName: Lymphocyte B (Virus A)
   myDescription: 
 --- !u!114 &2596167432376935937
 MonoBehaviour:
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d157c966d137ef07b7f25afc875e351, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyPrice: 200
+  energyPrice: 500
 --- !u!114 &3637164067226369523
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -58,7 +58,6 @@ public class EatingSystem : FSystem {
 
 									Move mv = myDuplicate.GetComponent<Move>();
 									if (mv != null) {
-										//Vector3 posTarget = new Vector3((pos.x - 0.5f) * 5f, (pos.y - 0.5f) * 5f);
 										Vector2 posTarget = new Vector2(Random.Range(pos.x - 1f, pos.x + 1f), Random.Range(pos.y -1f, pos.y -1f));
 
 										mv.targetPosition = posTarget;
