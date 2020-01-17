@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using FYFY;
 
-public class AntibodiesSystem : FSystem {
-	private Family _antibodiesGO = FamilyManager.getFamily(
-		new AllOfComponents(typeof(Antibodies), typeof(Growth), typeof(Life))
+public class GrowthAndLiveSystem : FSystem {
+	private Family _growingGO = FamilyManager.getFamily(
+		new AllOfComponents(typeof(Life), typeof(Growth))
 	);
 
 	// Use this to update member variables when system pause. 
@@ -18,12 +18,12 @@ public class AntibodiesSystem : FSystem {
 
 	// Use to process your families.
 	protected override void onProcess(int familiesUpdateCount) {
-		foreach (GameObject go in _antibodiesGO) {
-			Transform tr = go.GetComponent<Transform>();
+		foreach (GameObject go in _growingGO) {
+			Growth gr = go.GetComponent<Growth>();
 
 			//First an antibodies drift grow (during a fixed time) to his max size
 			//After the drift "live" during a fixed time before being destroyed
-			switch (go.GetComponent<Antibodies>().hasGrewUp) {
+			switch (gr.hasGrewUp) {
 				case true:
 					lives(go);
 					break;
@@ -52,7 +52,7 @@ public class AntibodiesSystem : FSystem {
 		tr.localScale = new Vector3(size, size, size);
 
 		if (gr.growthProgress >= gr.growthTime) {
-			go.GetComponent<Antibodies>().hasGrewUp = true;
+			gr.hasGrewUp = true;
 		}
 	}
 
