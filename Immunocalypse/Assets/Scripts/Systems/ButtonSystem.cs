@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using FYFY;
 
 public class ButtonSystem : FSystem {
-
 	private Family _panelGO = FamilyManager.getFamily(
 		new AllOfComponents(typeof(ListMenu))
 	);
@@ -14,6 +13,10 @@ public class ButtonSystem : FSystem {
 
 	public ButtonSystem() {
 		instance = this;
+		SystemHolder.allSystems.Add(this);
+
+		Texture2D cursor = Resources.Load<Texture2D>("Pixel Cursors/Cursors/basic_01");
+		Cursor.SetCursor(cursor, new Vector2(10, 5), CursorMode.Auto);
 	}
 
 	private void changeActiveMenus(string menuToSetActive) {
@@ -46,5 +49,26 @@ public class ButtonSystem : FSystem {
 	public void startGame(string levelName) {
 		//SceneManager.LoadScene(levelName);
 		GameObjectManager.loadScene(levelName);
+	}
+
+	public void pauseResumeGame() {
+		foreach (FSystem system in SystemHolder.pausableSystems) {
+			system.Pause = !system.Pause;
+		}
+	}
+
+	public void showHide(Canvas canvas) {
+		canvas.gameObject.SetActive(!canvas.gameObject.activeSelf);
+	}
+
+	public void modInfo (Canvas canvas) {
+		Texture2D cursor;
+
+		if (canvas.gameObject.activeSelf)
+			cursor = Resources.Load<Texture2D>("Pixel Cursors/Cursors/Bonus_50");
+		else
+			cursor = Resources.Load<Texture2D>("Pixel Cursors/Cursors/basic_01");
+
+		Cursor.SetCursor(cursor, new Vector2(10, 5), CursorMode.Auto);
 	}
 }

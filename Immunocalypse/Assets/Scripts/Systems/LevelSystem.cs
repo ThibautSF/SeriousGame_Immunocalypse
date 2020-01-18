@@ -7,6 +7,8 @@ using System.Collections.Generic;
 public class LevelSystem : FSystem {
 	private bool levelInit = false;
 	private string levelStatus = "Pending";
+	private bool gamePaused = false;
+	private int framePause = -1;
 
 	private Family _mapSpawnerGO = FamilyManager.getFamily(
 		new AllOfComponents(typeof(MapLayer), typeof(Factory))
@@ -38,11 +40,40 @@ public class LevelSystem : FSystem {
 
 	public LevelSystem() {
 		instance = this;
+		SystemHolder.allSystems.Add(this);
+		SystemHolder.pausableSystems.Add(this);
+	}
+
+	protected override void onPause(int currentFrame) {
+		switch (gamePaused) {
+			case true:
+				break;
+			
+			case false:
+			default:
+				gamePaused = true;
+				framePause = currentFrame;
+				break;
+		}
+
+		this.Pause = false;
+	}
+
+	protected override void onResume(int currentFrame) {
+		if (framePause != currentFrame)
+			gamePaused = false;
 	}
 
 	// Use to process your families.
 	protected override void onProcess(int familiesUpdateCount) {
 		if (!levelInit) {
+			// Pause all game system during initialisation
+			foreach (FSystem system in SystemHolder.pausableSystems) {
+				if (system == this)
+					continue;
+				system.Pause = true;
+			}
+
 			foreach (GameObject go in _mapSpawnerGO) {
 				Factory factory = go.GetComponent<Factory>();
 				Tilemap tilemap = go.GetComponent<Tilemap>();
@@ -85,6 +116,7 @@ public class LevelSystem : FSystem {
 					//Update UI image and text
 					UIUnit ui = myUI.GetComponent<UIUnit>();
 					ui.image.sprite = sr.sprite;
+					ui.image.color = sr.color;
 
 					ui.text.text = info.myName;
 					if(buyable != null)
@@ -95,13 +127,18 @@ public class LevelSystem : FSystem {
 			}
 
 			levelInit = true;
+
+			// Resume systems
+			foreach (FSystem system in SystemHolder.pausableSystems) {
+				system.Pause = false;
+			}
 		} else {
 			foreach (GameObject go in _playerGO) {
 				Health playerHealth = go.GetComponent<Health>();
 				Energy playerEnergy = go.GetComponent<Energy>();
 
 				//Update health
-				if (playerHealth != null) {
+				if (playerHealth != null && !gamePaused) {
 					bool init = false;
 
 					if (playerHealth.maxHealthPoints == 0)
@@ -119,7 +156,7 @@ public class LevelSystem : FSystem {
 				}
 
 				//Update energy
-				if (playerEnergy != null) {
+				if (playerEnergy != null && !gamePaused) {
 					foreach (GameObject energizerGO in _energizerGO) {
 						Energizer energizer = energizerGO.GetComponent<Energizer>();
 
@@ -173,59 +210,61 @@ public class LevelSystem : FSystem {
 			}
 
 			//Spawn waves
-			foreach (GameObject go in _levelSpawnerGO) {
-				FactoryLevel factory = go.GetComponent<FactoryLevel>();
+			if (!gamePaused) {
+				foreach (GameObject go in _levelSpawnerGO) {
+					FactoryLevel factory = go.GetComponent<FactoryLevel>();
 
-				factory.reloadProgress += Time.deltaTime;
-				
-				if (factory.reloadProgress >= factory.reloadTime) {
-					if (factory.currentWave < factory.waves.Count) {
-						Wave wave = factory.waves[factory.currentWave];
+					factory.reloadProgress += Time.deltaTime;
+					
+					if (factory.reloadProgress >= factory.reloadTime) {
+						if (factory.currentWave < factory.waves.Count) {
+							Wave wave = factory.waves[factory.currentWave];
 
-						List<Vector3> spawnArea = TilemapUtils.getAllWorldPosition(factory.spawnArea);
-						List<Vector3> targetArea = TilemapUtils.getAllWorldPosition(factory.spawnTargetArea);
+							List<Vector3> spawnArea = TilemapUtils.getAllWorldPosition(factory.spawnArea);
+							List<Vector3> targetArea = TilemapUtils.getAllWorldPosition(factory.spawnTargetArea);
 
-						//Spawn each group of entity
-						foreach (Group g in wave.groups) {
-							int i = 0;
+							//Spawn each group of entity
+							foreach (Group g in wave.groups) {
+								int i = 0;
 
-							while (i < g.nbSpawn) {
-								Vector3 position = Vector3.zero;
-								if (spawnArea.Count > 0)
-									position = spawnArea[Random.Range(0, spawnArea.Count)];
+								while (i < g.nbSpawn) {
+									Vector3 position = Vector3.zero;
+									if (spawnArea.Count > 0)
+										position = spawnArea[Random.Range(0, spawnArea.Count)];
 
-								GameObject mySpawn = Object.Instantiate<GameObject>(g.prefab, position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
-								GameObjectManager.bind(mySpawn);
+									GameObject mySpawn = Object.Instantiate<GameObject>(g.prefab, position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
+									GameObjectManager.bind(mySpawn);
 
-								//Init first target move
-								Vector3 target = Vector3.zero;
-								if (targetArea.Count > 0)
-									target = targetArea[Random.Range(0, targetArea.Count)];
-								
-								Move mv = mySpawn.GetComponent<Move>();
-								if (mv != null) {
-									mv.targetPosition = target;
-									mv.targetObject = null;
-									mv.newTargetPosition = true;
-									mv.forcedTarget = true;
+									//Init first target move
+									Vector3 target = Vector3.zero;
+									if (targetArea.Count > 0)
+										target = targetArea[Random.Range(0, targetArea.Count)];
+									
+									Move mv = mySpawn.GetComponent<Move>();
+									if (mv != null) {
+										mv.targetPosition = target;
+										mv.targetObject = null;
+										mv.newTargetPosition = true;
+										mv.forcedTarget = true;
+									}
+
+									i++;
 								}
-
-								i++;
 							}
+
+							factory.reloadTime = wave.timeBeforeNext;
+							factory.reloadProgress = 0f;
+
+							factory.currentWave += 1;
 						}
-
-						factory.reloadTime = wave.timeBeforeNext;
-						factory.reloadProgress = 0f;
-
-						factory.currentWave += 1;
 					}
-				}
 
-				//Destroy level wave factory if last wave was released (for victory condition)
-				if (factory.currentWave >= factory.waves.Count) {
-					GameObjectManager.removeComponent<FactoryLevel>(go);
-					//GameObjectManager.unbind(go);
-					//Object.Destroy(go);
+					//Destroy level wave factory if last wave was released (for victory condition)
+					if (factory.currentWave >= factory.waves.Count) {
+						GameObjectManager.removeComponent<FactoryLevel>(go);
+						//GameObjectManager.unbind(go);
+						//Object.Destroy(go);
+					}
 				}
 			}
 

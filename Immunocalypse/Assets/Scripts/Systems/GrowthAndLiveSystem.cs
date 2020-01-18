@@ -10,6 +10,8 @@ public class GrowthAndLiveSystem : FSystem {
 
 	public GrowthAndLiveSystem() {
 		instance = this;
+		SystemHolder.allSystems.Add(this);
+		SystemHolder.pausableSystems.Add(this);
 	}
 
 	// Use this to update member variables when system pause. 

@@ -22,6 +22,8 @@ public class EatingSystem : FSystem {
 
 	public EatingSystem() {
 		instance = this;
+		SystemHolder.allSystems.Add(this);
+		SystemHolder.pausableSystems.Add(this);
 	}
 
 	// Use to process your families.
@@ -77,7 +79,10 @@ public class EatingSystem : FSystem {
 										Renderer r = target.GetComponentInChildren<Renderer>();
 
 										if (r != null) {
-											r.material.color = eat.color;
+											if (r is SpriteRenderer)
+												((SpriteRenderer) r).color = eat.color;
+											else
+												r.material.color = eat.color;
 										}
 									}
 								} else {

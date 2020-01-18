@@ -22,6 +22,14 @@ public class BlockingSystem : FSystem {
 
 	public BlockingSystem() {
 		instance = this;
+		SystemHolder.allSystems.Add(this);
+		SystemHolder.pausableSystems.Add(this);
+	}
+
+	protected override void onPause(int currentFrame) {
+	}
+
+	protected override void onResume(int currentFrame) {
 	}
 
 	// Use to process your families.

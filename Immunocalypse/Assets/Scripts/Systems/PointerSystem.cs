@@ -1,15 +1,20 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using FYFY;
 using FYFY_plugins.PointerManager;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 // Based on code by Jeff Zimmer (https://hyunkell.com/blog/rts-style-unit-selection-in-unity-5/)
 public class PointerSystem : FSystem {
 	private Family _playerGO = FamilyManager.getFamily(
 		new AllOfComponents(typeof(Player), typeof(Energy))
+	);
+
+	private Family _infoPanelGO = FamilyManager.getFamily(
+		new AllOfComponents(typeof(Info), typeof(UIUnit)),
+		new NoneOfComponents(typeof(PointerSensitive), typeof(SelectableEntity))
 	);
 
 	private Family _selectorGO = FamilyManager.getFamily(
@@ -38,6 +43,7 @@ public class PointerSystem : FSystem {
 
 	public PointerSystem() {
 		instance = this;
+		SystemHolder.allSystems.Add(this);
 
 		_selectedGO.addEntryCallback(objectSelection);
 		//_selectedGO.addExitCallback(objectUnselection);
@@ -167,6 +173,67 @@ public class PointerSystem : FSystem {
 					} else {
 						if (r != null)
 							r.material.color = Color.white;
+					}
+				}
+			}
+
+			if (Input.GetMouseButtonDown(0)) {
+				//Update infos
+				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+				RaycastHit2D hit2d = Physics2D.GetRayIntersection(ray, Mathf.Infinity, LayerMask.GetMask("Ignore Raycast"));
+
+				if (hit2d.collider != null) {
+					GameObject collideGO = hit2d.collider.gameObject;
+
+					if (collideGO != null) {
+						Info infos = collideGO.GetComponent<Info>();
+
+						if (infos != null) {
+							foreach (GameObject infoPanelGo in _infoPanelGO) {
+								UIUnit ui = infoPanelGo.GetComponent<UIUnit>();
+
+								if (ui.image != null) {
+									SpriteRenderer sr = collideGO.GetComponentInChildren<SpriteRenderer>();
+
+									if (sr != null) {
+										ui.image.sprite = sr.sprite;
+										ui.image.color = sr.color;
+									} else {
+										ui.image.sprite = Resources.Load<Sprite>("Icons/placeholder");
+										ui.image.color = Color.white;
+									}
+								}
+
+								if (ui.text != null) {
+									ui.text.text = infos.myName;
+								}
+
+								if (ui.description != null) {
+									StringBuilder sb = new StringBuilder();
+
+									Prey prey = collideGO.GetComponent<Prey>();
+									if (prey != null)
+										sb.AppendLine("Type : " + prey.myType);
+
+									Predator predator = collideGO.GetComponent<Predator>();
+									if (predator != null)
+										sb.AppendLine("Targets : " + string.Join(" / ", predator.myPreys));
+
+									sb.AppendLine(infos.myDescription);
+
+									ui.description.text = sb.ToString();
+
+									RectTransform rtInfoPanel = (RectTransform) ui.gameObject.transform;
+									RectTransform rtDescriptionText = (RectTransform) ui.description.GetComponent<ContentSizeFitter>().transform;
+									LayoutRebuilder.ForceRebuildLayoutImmediate(rtDescriptionText);
+
+									float posy = -10 - rtDescriptionText.rect.height/2;
+
+									rtDescriptionText.anchoredPosition = new Vector2(rtDescriptionText.anchoredPosition.x, posy);
+									rtInfoPanel.sizeDelta = new Vector2(rtInfoPanel.sizeDelta.x, rtDescriptionText.rect.height);
+								}
+							}
+						}
 					}
 				}
 			}

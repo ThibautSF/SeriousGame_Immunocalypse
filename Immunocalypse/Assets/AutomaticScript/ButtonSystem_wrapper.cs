@@ -34,4 +34,19 @@ public class ButtonSystem_wrapper : MonoBehaviour
 		MainLoop.callAppropriateSystemMethod ("ButtonSystem", "startGame", levelName);
 	}
 
+	public void pauseResumeGame()
+	{
+		MainLoop.callAppropriateSystemMethod ("ButtonSystem", "pauseResumeGame", null);
+	}
+
+	public void showHide(UnityEngine.Canvas canvas)
+	{
+		MainLoop.callAppropriateSystemMethod ("ButtonSystem", "showHide", canvas);
+	}
+
+	public void modInfo(UnityEngine.Canvas canvas)
+	{
+		MainLoop.callAppropriateSystemMethod ("ButtonSystem", "modInfo", canvas);
+	}
+
 }

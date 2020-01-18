@@ -12,6 +12,8 @@ public class FactorySystem : FSystem {
 
 	public FactorySystem() {
 		instance = this;
+		SystemHolder.allSystems.Add(this);
+		SystemHolder.pausableSystems.Add(this);
 	}
 
 	// Use this to update member variables when system pause. 
@@ -35,8 +37,9 @@ public class FactorySystem : FSystem {
 
 				if (factory.reloadProgress >= factory.reloadTime) {
 					//Instantiate and bind to FYFY a new instance of antibodies drift (factory prefab)
-					//factory.prefab.GetType();
-					GameObject mySpawn = Object.Instantiate<GameObject>(factory.prefab, tr.position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
+					Vector3 spawnPos = tr.position;
+					spawnPos.z += 1;
+					GameObject mySpawn = Object.Instantiate<GameObject>(factory.prefab, spawnPos, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
 					GameObjectManager.bind(mySpawn);
 
 					//Set some parameters of the antibodies drift

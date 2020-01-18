@@ -15,6 +15,7 @@ public class UISystem : FSystem {
 
 	public UISystem() {
 		instance = this;
+		SystemHolder.allSystems.Add(this);
 	}
 
 	// Use this to update member variables when system pause. 

@@ -27,6 +27,8 @@ public class TargetingSystem : FSystem {
 
 	public TargetingSystem() {
 		instance = this;
+		SystemHolder.allSystems.Add(this);
+		SystemHolder.pausableSystems.Add(this);
 
 		grid = Object.FindObjectOfType<Grid>();
 

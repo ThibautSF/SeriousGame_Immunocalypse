@@ -15,6 +15,8 @@ public class MoveSystem : FSystem {
 
 	public MoveSystem() {
 		instance = this;
+		SystemHolder.allSystems.Add(this);
+		SystemHolder.pausableSystems.Add(this);
 
 		Grid grid = Object.FindObjectOfType<Grid>();
 
