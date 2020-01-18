@@ -8,6 +8,12 @@ public class FactorySystem : FSystem {
 		new NoneOfComponents(typeof(MapLayer))
 	);
 
+	public static FSystem instance;
+
+	public FactorySystem() {
+		instance = this;
+	}
+
 	// Use this to update member variables when system pause. 
 	// Advice: avoid to update your families inside this function.
 	protected override void onPause(int currentFrame) {

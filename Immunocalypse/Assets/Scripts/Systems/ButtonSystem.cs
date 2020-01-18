@@ -10,6 +10,12 @@ public class ButtonSystem : FSystem {
 		new AllOfComponents(typeof(ListMenu))
 	);
 
+	public static FSystem instance;
+
+	public ButtonSystem() {
+		instance = this;
+	}
+
 	private void changeActiveMenus(string menuToSetActive) {
 		List<GameObject> go = _panelGO.First().GetComponent<ListMenu>().listMenus;
 		foreach (GameObject menuPanel in go) {

@@ -34,7 +34,11 @@ public class PointerSystem : FSystem {
 		new NoneOfTags("Selected")
 	);
 
+	public static FSystem instance;
+
 	public PointerSystem() {
+		instance = this;
+
 		_selectedGO.addEntryCallback(objectSelection);
 		//_selectedGO.addExitCallback(objectUnselection);
 		_unselectedGO.addEntryCallback(objectUnselection);
@@ -52,119 +56,118 @@ public class PointerSystem : FSystem {
 
 	// Use to process your families.
 	protected override void onProcess(int familiesUpdateCount) {
-		bool isOnBuyable = false;
-		foreach (GameObject buyable in _buyableSelectableGO) {
-			if (Input.GetMouseButtonDown(0)) {
-				unSelectAll();
-
-				SelectableEntity selectable = buyable.GetComponent<SelectableEntity>();
-
-				selectable.isSelected = true;
-				GameObjectManager.setGameObjectTag(buyable, "Selected");
-
-				isOnBuyable = true;
-				break;
-			}
-		}
-
 		GameObject go = _selectorGO.First();
-		if (go != null && !isOnBuyable) {
+		if (go != null) {
 			SelectorEntity selector = go.GetComponent<SelectorEntity>();
 
-			// If we press the right mouse button, move selected units or buy unit
-			if (Input.GetMouseButtonDown(1) && !selector.isSelecting && _selectedGO.Count > 0) {
-				foreach (GameObject selectedObject in _selectedGO) {
-					Move move = null;
+			bool isOnBuyable = false;
+			foreach (GameObject buyable in _buyableSelectableGO) {
+				if (Input.GetMouseButtonDown(0)) {
+					unSelectAll(selector);
 
-					if (selector.hasSelected) {
-						//Case : unit selected -> move the unit
-						move = selectedObject.GetComponent<Move>();
-					} else {
-						//Case : buyable object selected -> buy
-						UIUnit ui = selectedObject.GetComponent<UIUnit>();
-						GameObject playerGO = _playerGO.First();
+					SelectableEntity selectable = buyable.GetComponent<SelectableEntity>();
 
-						if (ui != null && ui.prefab != null && playerGO != null) {
-							Player player = playerGO.GetComponent<Player>();
+					selectable.isSelected = true;
+					GameObjectManager.setGameObjectTag(buyable, "Selected");
 
-							Energy playerEnergy = playerGO.GetComponent<Energy>();
-							Buyable buyable = ui.prefab.GetComponent<Buyable>();
+					isOnBuyable = true;
+					break;
+				}
+			}
 
-							//Check if we have enough "money"
-							if (buyable != null && buyable.energyPrice <= playerEnergy.energyPoints) {
-								playerEnergy.energyPoints -= buyable.energyPrice;
+			if (!isOnBuyable) {
+				// If we press the right mouse button, move selected units or buy unit
+				if (Input.GetMouseButtonDown(1) && !selector.isSelecting && _selectedGO.Count > 0) {
+					foreach (GameObject selectedObject in _selectedGO) {
+						Move move = null;
 
-								//Spawn
-								List<Vector3> spawnArea = TilemapUtils.getAllWorldPosition(player.spawnArea);
-								Vector3 position = Vector3.zero;
-								if (spawnArea.Count > 0)
-									position = spawnArea[Random.Range(0, spawnArea.Count)];
+						if (selector.hasSelected) {
+							//Case : unit selected -> move the unit
+							move = selectedObject.GetComponent<Move>();
+						} else {
+							//Case : buyable object selected -> buy
+							UIUnit ui = selectedObject.GetComponent<UIUnit>();
+							GameObject playerGO = _playerGO.First();
 
-								GameObject myNewUnit = Object.Instantiate<GameObject>(ui.prefab, position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
-								GameObjectManager.bind(myNewUnit);
+							if (ui != null && ui.prefab != null && playerGO != null) {
+								Player player = playerGO.GetComponent<Player>();
 
-								move = myNewUnit.GetComponent<Move>();
+								Energy playerEnergy = playerGO.GetComponent<Energy>();
+								Buyable buyable = ui.prefab.GetComponent<Buyable>();
+
+								//Check if we have enough "money"
+								if (buyable != null && buyable.energyPrice <= playerEnergy.energyPoints) {
+									playerEnergy.energyPoints -= buyable.energyPrice;
+
+									//Spawn
+									List<Vector3> spawnArea = TilemapUtils.getAllWorldPosition(player.spawnArea);
+									Vector3 position = Vector3.zero;
+									if (spawnArea.Count > 0)
+										position = spawnArea[Random.Range(0, spawnArea.Count)];
+
+									GameObject myNewUnit = Object.Instantiate<GameObject>(ui.prefab, position, Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)));
+									GameObjectManager.bind(myNewUnit);
+
+									move = myNewUnit.GetComponent<Move>();
+								}
+
+								//unSelectAll();
 							}
+						}
 
-							//unSelectAll();
+						//Move the unit
+						if (move != null) {
+							move.targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+							move.newTargetPosition = true;
+							move.forcedTarget = true;
 						}
 					}
-
-					//Move the unit
-					if (move != null) {
-						move.targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-						move.newTargetPosition = true;
-						move.forcedTarget = true;
-					}
 				}
 
-				if (selector.hasSelected)
-					selector.hasSelected = false;
-			}
+				// If we press the left mouse button, begin selection and remember the location of the mouse
+				if (Input.GetMouseButtonDown(0)) {
+					selector.isSelecting = true;
+					selector.mousePosition1 = Input.mousePosition;
 
-			// If we press the left mouse button, begin selection and remember the location of the mouse
-			if (Input.GetMouseButtonDown(0)) {
-				selector.isSelecting = true;
-				selector.mousePosition1 = Input.mousePosition;
+					unSelectAll(selector);
+				}
+				
+				// If we let go of the left mouse button, end selection
+				if (Input.GetMouseButtonUp(0)) {
+					List<GameObject> selectedObjects = new List<GameObject>();
 
-				unSelectAll();
-			}
-			
-			// If we let go of the left mouse button, end selection
-			if (Input.GetMouseButtonUp(0)) {
-				List<GameObject> selectedObjects = new List<GameObject>();
+					foreach (GameObject selectableObject in _selectableGO) {
+						if (IsWithinSelectionBounds(selectableObject, selector)) {
+							SelectableEntity selectable = selectableObject.GetComponent<SelectableEntity>();
+							selectable.isSelected = false;
+							GameObjectManager.setGameObjectTag(selectableObject, "Selected");
 
+							selectedObjects.Add(selectableObject);
+						}
+					}
+					
+					var sb = new StringBuilder();
+					sb.AppendLine(string.Format("Selecting [{0}] Units", selectedObjects.Count));
+					foreach (GameObject selectedObject in selectedObjects)
+						sb.AppendLine("-> " + selectedObject.name);
+					Debug.Log(sb.ToString());
+					
+					selector.isSelecting = false;
+					if (selectedObjects.Count > 0) {
+						selector.hasSelected = true;
+					}
+				}
+				
+				// Highlight all objects within the selection box
 				foreach (GameObject selectableObject in _selectableGO) {
+					Renderer r = selectableObject.GetComponentInChildren<Renderer>();
 					if (IsWithinSelectionBounds(selectableObject, selector)) {
-						SelectableEntity selectable = selectableObject.GetComponent<SelectableEntity>();
-						selectable.isSelected = false;
-						GameObjectManager.setGameObjectTag(selectableObject, "Selected");
-
-						selectedObjects.Add(selectableObject);
+						if (r != null)
+							r.material.color = Color.green;
+					} else {
+						if (r != null)
+							r.material.color = Color.white;
 					}
-				}
-				
-				var sb = new StringBuilder();
-				sb.AppendLine(string.Format("Selecting [{0}] Units", selectedObjects.Count));
-				foreach (GameObject selectedObject in selectedObjects)
-					sb.AppendLine("-> " + selectedObject.name);
-				Debug.Log(sb.ToString());
-				
-				selector.isSelecting = false;
-				if (selectedObjects.Count > 0) {
-					selector.hasSelected = true;
-				}
-			}
-			
-			// Highlight all objects within the selection box
-			foreach (GameObject selectableObject in _selectableGO) {
-				Renderer r = selectableObject.GetComponentInChildren<Renderer>();
-				if (IsWithinSelectionBounds(selectableObject, selector)) {
-					if (r != null)
-						r.material.color = Color.green;
-				} else {
-					if (r != null)
-						r.material.color = Color.white;
 				}
 			}
 		}
@@ -180,7 +183,7 @@ public class PointerSystem : FSystem {
 		//For simple selection
 		bool objectSelected = false;
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		RaycastHit2D[] hit2d = Physics2D.GetRayIntersectionAll(ray, Mathf.Infinity, LayerMask.GetMask("Default"));
+		RaycastHit2D[] hit2d = Physics2D.GetRayIntersectionAll(ray, Mathf.Infinity, LayerMask.GetMask("Ignore Raycast"));
 		foreach (RaycastHit2D hit in hit2d) {
 			if (hit.collider != null && hit.collider.transform == go.transform) {
 				// raycast hit this gameobject
@@ -193,7 +196,6 @@ public class PointerSystem : FSystem {
 	}
 
 	private void objectSelection(GameObject go) {
-		//TODO add selection visual
 		SelectableEntity selectable = go.GetComponent<SelectableEntity>();
 		if (selectable.selectionVisual != null) {
 			GameObjectManager.setGameObjectState(selectable.selectionVisual, true);
@@ -202,18 +204,19 @@ public class PointerSystem : FSystem {
 
 	//private void objectUnselection(int gameObjectInstanceId) {
 	private void objectUnselection(GameObject go) {
-		//TODO remove selection visual (if object still exist)
 		SelectableEntity selectable = go.GetComponent<SelectableEntity>();
 		if (selectable.selectionVisual != null) {
 			GameObjectManager.setGameObjectState(selectable.selectionVisual, false);
 		}
 	}
 
-	private void unSelectAll() {
+	private void unSelectAll(SelectorEntity selector) {
 		foreach (GameObject selectableObject in _selectableGO) {
 			SelectableEntity selectable = selectableObject.GetComponent<SelectableEntity>();
 			selectable.isSelected = false;
 			GameObjectManager.setGameObjectTag(selectableObject, "Unselected");
 		}
+
+		selector.hasSelected = false;
 	}
 }

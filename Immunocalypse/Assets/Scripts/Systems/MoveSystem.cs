@@ -11,7 +11,11 @@ public class MoveSystem : FSystem {
 
 	private GridMap myMaps;
 
+	public static FSystem instance;
+
 	public MoveSystem() {
+		instance = this;
+
 		Grid grid = Object.FindObjectOfType<Grid>();
 
 		if (grid != null) {
@@ -29,29 +33,19 @@ public class MoveSystem : FSystem {
 				//Get next target
 				Vector3 target = mv.path[0];
 
-				printPath(go);
-				
-				//Look at direction
-				Vector2 vectorToTarget = target - tr.position;
-				Debug.DrawRay(tr.position, vectorToTarget, Color.red);
-				float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-				Quaternion qt = Quaternion.AngleAxis(angle, Vector3.forward);
-				tr.rotation = Quaternion.RotateTowards(tr.rotation, qt, Time.deltaTime * mv.speed * 100);
-				
-				//Move
-				float modifiers = getSpeedModifiers(go, tr.position, vectorToTarget);
-				tr.position = Vector2.MoveTowards(tr.position, target, mv.speed * modifiers * Time.deltaTime);
-
 				//Clean target if reached
-				if (mv.path.Count > 1 && myMaps != null) {
+				if (myMaps != null) {
 					//If we reach the tile targeted at worldpos -> consider subtarget reached
 					for (int i = myMaps.myTileMaps.Count - 1; i >= 0 ; i--) {
 						if (myMaps.myTileMaps[i].WorldToCell(tr.position) == myMaps.myTileMaps[i].WorldToCell(target)) {
 							mv.path.RemoveAt(0);
+							if (mv.path.Count == 1)
+								mv.forcedTarget = false;
 							break;
 						}
 					}
 				} else {
+					/*
 					//Last target must be reached !
 
 					//If we reach the tile targeted at worldpos -> allow to retarget (avoid blocked by unreachable target if we can retarget)
@@ -71,7 +65,27 @@ public class MoveSystem : FSystem {
 							mv.forcedTarget = false;
 						}
 					}
+					*/
 				}
+
+				if (mv.path.Count == 0)
+					continue;
+
+				target = mv.path[0];
+
+				printPath(go);
+				
+				//Look at direction
+				Vector2 vectorToTarget = target - tr.position;
+				Debug.DrawRay(tr.position, vectorToTarget, Color.red);
+				float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+				Quaternion qt = Quaternion.AngleAxis(angle, Vector3.forward);
+				tr.rotation = Quaternion.RotateTowards(tr.rotation, qt, Time.deltaTime * mv.speed * 100);
+				
+				//Move
+				float modifiers = getSpeedModifiers(go, tr.position, vectorToTarget);
+				tr.position = Vector2.MoveTowards(tr.position, target, mv.speed * modifiers * Time.deltaTime);
+
 			}
 		}
 	}

@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 1204075593433868846}
   - component: {fileID: 4545787115301125131}
   - component: {fileID: 5709199533915188881}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Coque1Bis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 471020200405402081}
   - component: {fileID: 1606512417441735821}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Texture
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: -6717309300023323145}
   - component: {fileID: 965758085227037650}
   - component: {fileID: -195405011701837496}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bacille1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3817795703829954104}
   - component: {fileID: 2610280321247550292}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Texture
   m_TagString: Untagged
   m_Icon: {fileID: 0}

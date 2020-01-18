@@ -18,6 +18,12 @@ public class EatingSystem : FSystem {
 		)
 	);
 
+	public static FSystem instance;
+
+	public EatingSystem() {
+		instance = this;
+	}
+
 	// Use to process your families.
 	protected override void onProcess(int familiesUpdateCount) {
 		foreach (GameObject go in _triggeredGO) {

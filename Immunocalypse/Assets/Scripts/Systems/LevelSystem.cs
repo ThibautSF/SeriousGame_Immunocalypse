@@ -34,6 +34,12 @@ public class LevelSystem : FSystem {
 		new AnyOfComponents(typeof(FactoryLevel), typeof(Virus), typeof(Bacteria), typeof(Infected))
 	);
 
+	public static FSystem instance;
+
+	public LevelSystem() {
+		instance = this;
+	}
+
 	// Use to process your families.
 	protected override void onProcess(int familiesUpdateCount) {
 		if (!levelInit) {
@@ -147,7 +153,7 @@ public class LevelSystem : FSystem {
 						bool cellFound = false;
 						Vector3 worldPos = tilemap.CellToWorld(localPos);
 
-						Collider2D[] colliders = Physics2D.OverlapCircleAll(worldPos, 1f, LayerMask.GetMask("Default"));
+						Collider2D[] colliders = Physics2D.OverlapCircleAll(worldPos, 1f, LayerMask.GetMask("Ignore Raycast"));
 
 						foreach (Collider2D collider in colliders) {
 							GameObject collidedGO = collider.gameObject;
@@ -217,8 +223,9 @@ public class LevelSystem : FSystem {
 
 				//Destroy level wave factory if last wave was released (for victory condition)
 				if (factory.currentWave >= factory.waves.Count) {
-					GameObjectManager.unbind(go);
-					Object.Destroy(go);
+					GameObjectManager.removeComponent<FactoryLevel>(go);
+					//GameObjectManager.unbind(go);
+					//Object.Destroy(go);
 				}
 			}
 

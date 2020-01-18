@@ -6,6 +6,12 @@ public class GrowthAndLiveSystem : FSystem {
 		new AllOfComponents(typeof(Life), typeof(Growth))
 	);
 
+	public static FSystem instance;
+
+	public GrowthAndLiveSystem() {
+		instance = this;
+	}
+
 	// Use this to update member variables when system pause. 
 	// Advice: avoid to update your families inside this function.
 	protected override void onPause(int currentFrame) {

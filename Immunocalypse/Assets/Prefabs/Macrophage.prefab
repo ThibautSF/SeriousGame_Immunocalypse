@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4656523950098638416}
   - component: {fileID: 8510816322038129236}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Texture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 5573377863912184143}
   - component: {fileID: -5776849594546513739}
   - component: {fileID: 726805172960857515}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Macrophage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,7 +307,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8830671928879302070}
   - component: {fileID: 7117005267837825298}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Selection
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2701155809620223032}
   - component: {fileID: 4410177584989900956}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Selection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 7899168925938430571}
   - component: {fileID: 7559745025192170497}
   - component: {fileID: 6189800510192069669}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Lymphocyte3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,6 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a29b68e4342c0b1d390d7dc0f41a30e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passive: 1
   myPreys:
   - Bacteria A
 --- !u!114 &7899168925938430571
@@ -269,7 +270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2265306681162483678}
   - component: {fileID: 3021011459536962522}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Texture
   m_TagString: Untagged
   m_Icon: {fileID: 0}

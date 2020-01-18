@@ -23,7 +23,11 @@ public class TargetingSystem : FSystem {
 	private Grid grid;
 	private GridMap myMaps;
 
+	public static FSystem instance;
+
 	public TargetingSystem() {
+		instance = this;
+
 		grid = Object.FindObjectOfType<Grid>();
 
 		if (grid != null) {
@@ -31,10 +35,9 @@ public class TargetingSystem : FSystem {
 		}
 	}
 
-	private GameObject seekTarget(GameObject go) {
+	private GameObject seekTarget(GameObject go, Predator predator) {
 		Transform tr = go.GetComponent<Transform>();
 		Move mv = go.GetComponent<Move>();
-		Predator predator = go.GetComponent<Predator>();
 
 		float radius = 5f;
 		if (mv.targetObject != null) {
@@ -43,7 +46,7 @@ public class TargetingSystem : FSystem {
 			radius = dist;
 		}
 
-		Collider2D[] colliders = Physics2D.OverlapCircleAll(tr.position, radius, LayerMask.GetMask("Default"));
+		Collider2D[] colliders = Physics2D.OverlapCircleAll(tr.position, radius, LayerMask.GetMask("Ignore Raycast"));
 
 		GameObject closestTarget = null;
 
@@ -55,7 +58,7 @@ public class TargetingSystem : FSystem {
 
 				if (collidedGO == go) {
 					continue;
-				} else if (predator != null) {
+				} else {
 					if (_preysGO.contains(collidedGO.GetInstanceID())) {
 						Prey prey = collidedGO.GetComponent<Prey>();
 
@@ -149,11 +152,12 @@ public class TargetingSystem : FSystem {
 		foreach (GameObject go in _movingGO) {
 			Transform tr = go.GetComponent<Transform>();
 			Move mv = go.GetComponent<Move>();
+			Predator predator = go.GetComponent<Predator>();
 
 			GameObject targetSeeked = null;
-			if (!mv.forcedTarget) {
-				//Seek new target only if we don't have a forced order to do !
-				targetSeeked = seekTarget(go);
+			if (predator != null && !predator.passive && !mv.forcedTarget) {
+				//Seek new target only if we aren't passive predator and don't have a forced order to do !
+				targetSeeked = seekTarget(go, predator);
 			}
 
 			bool newTargetSeeked = false;

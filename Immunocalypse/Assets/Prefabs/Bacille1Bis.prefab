@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 135325829198751749}
   - component: {fileID: 3332834197933293088}
   - component: {fileID: 6804478318999727290}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bacille1Bis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.01, y: -0.01}
@@ -222,7 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1719280085409121226}
   - component: {fileID: 512848269644801702}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Texture
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6060279738010900609}
   - component: {fileID: 6860091203208974309}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Texture_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   m_Component:
   - component: {fileID: 568144988587420358}
   - component: {fileID: 1349243863867674665}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Texture_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 3420069996078118977}
   - component: {fileID: 1373332726324480255}
   - component: {fileID: 7136742157299794909}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Anticorps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -360,7 +360,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3599865700064124929}
   - component: {fileID: 6675655395547192455}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Texture_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -440,7 +440,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1538170188816929763}
   - component: {fileID: 3171168869679635560}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Texture_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -520,7 +520,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4912323961956152745}
   - component: {fileID: 3182355764038520925}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Texture_9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -600,7 +600,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5880616782151263434}
   - component: {fileID: 5197714044038172284}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Texture_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -680,7 +680,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1259206509113002624}
   - component: {fileID: 7527100478734545232}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Texture_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -760,7 +760,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3671262831607265163}
   - component: {fileID: 7169975438241857946}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Texture_17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -840,7 +840,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6405746293215224952}
   - component: {fileID: 2660656967825617208}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Texture_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -920,7 +920,7 @@ GameObject:
   m_Component:
   - component: {fileID: 648236798862178965}
   - component: {fileID: 5716908805681610946}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Texture_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1000,7 +1000,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4117486469865031716}
   - component: {fileID: 6863272555717019279}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Texture_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1080,7 +1080,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8424861864859023477}
   - component: {fileID: 5986440817852997881}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Texture_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1160,7 +1160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2199177477841341137}
   - component: {fileID: 7132968442625536593}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Texture_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1240,7 +1240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3618747303458173336}
   - component: {fileID: 5691440013007652610}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Texture_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1320,7 +1320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2540810534944784335}
   - component: {fileID: 6892767467204581880}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Texture_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1400,7 +1400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 40142616214988411}
   - component: {fileID: 7744893660605221684}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Texture_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1480,7 +1480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9197629661163797847}
   - component: {fileID: 2701869592323421798}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Texture_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}

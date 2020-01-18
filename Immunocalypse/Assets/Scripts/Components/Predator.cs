@@ -5,5 +5,6 @@ using System.Collections.Generic;
 /// Component to mark predator entity
 /// </summary>
 public class Predator : MonoBehaviour {
+	public bool passive = false;
 	public List<string> myPreys;
 }
