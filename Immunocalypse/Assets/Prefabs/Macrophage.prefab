@@ -228,6 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a29b68e4342c0b1d390d7dc0f41a30e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passive: 0
   myPreys:
   - Virus A
   - Virus B
@@ -247,7 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeSinceLastEffect: 1
-  effectFreq: 1
+  effectFreq: 0
 --- !u!114 &5573377863912184143
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a29b68e4342c0b1d390d7dc0f41a30e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passive: 0
   myPreys:
   - Cell
 --- !u!114 &4201807422811564393
@@ -280,7 +281,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: fcc86f5dc089edfa5b684ef85b84e7e1, type: 3}
   m_Color: {r: 0.5920806, g: 0.042984664, b: 0.113328755, a: 1}
   m_FlipX: 0
