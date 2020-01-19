@@ -39,7 +39,7 @@ public class EatingSystem : FSystem {
 			foreach (GameObject target in t2d.Targets) {
 				if (_preysGO.contains(target.GetInstanceID())) {
 					Prey prey = target.GetComponent<Prey>();
-					
+
 					if (predator.myPreys.Contains(prey.myType)) {
 						//"eat" the target
 						Transform collidedTr = target.GetComponent<Transform>();

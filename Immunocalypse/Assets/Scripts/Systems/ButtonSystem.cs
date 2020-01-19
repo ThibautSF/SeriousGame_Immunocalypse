@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
@@ -58,12 +59,15 @@ public class ButtonSystem : FSystem {
 			status = system.Pause;
 		}
 
-		if (canvas != null)
-			canvas.gameObject.SetActive(status);
+		if (canvas != null) {
+			//canvas.gameObject.SetActive(status);
+			GameObjectManager.setGameObjectState(canvas.gameObject, status);
+		}
 	}
 
 	public void showHide(Canvas canvas) {
-		canvas.gameObject.SetActive(!canvas.gameObject.activeSelf);
+		//canvas.gameObject.SetActive(!canvas.gameObject.activeSelf);
+		GameObjectManager.setGameObjectState(canvas.gameObject, !canvas.gameObject.activeSelf);
 	}
 
 	public void modInfo(Canvas canvas) {

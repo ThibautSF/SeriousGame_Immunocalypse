@@ -10,6 +10,8 @@ using UnityEngine.Tilemaps;
 /// Sould be at least one ( multiple could be unstable)
 /// </remarks>
 public class Player : MonoBehaviour {
+	public Canvas endScreen;
+
 	[Header("Buyable Visuals Settings")]
 	public GameObject unitContainer;
 	public GameObject unitUIVisual;

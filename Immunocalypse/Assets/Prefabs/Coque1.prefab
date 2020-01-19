@@ -92,7 +92,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myName: "Bact\xE9rie B"
-  myDescription: 
+  myDescription: "La bact\xE9rie est un micro-organisme ubiquiste, unicellulaire et
+    sans noyau (procaryote) dont le g\xE9nome est constitu\xE9 d'ADN. Celui-ci consiste
+    en un seul chromosome, et on note \xE9ventuellement la pr\xE9sence de plasmides
+    (petit morceau d'ADN circulaire). L'ensemble des bact\xE9ries forme le r\xE8gne
+    des eubact\xE9ries (Eubacteria).  Certaines bact\xE9ries peuvent \xEAtre pathog\xE8nes.
+    Chez l'Homme, les sympt\xF4mes d'une infection bact\xE9rienne sont similaires
+    \xE0 ceux observ\xE9s lors d'une infection virale (\xE9ruption cutan\xE9e, toux,
+    \xE9coulement nasal, larmoiement, fatigue, naus\xE9es, fi\xE8vre et douleurs musculaires).
+    Parfois, elles sont mortelles."
 --- !u!114 &8804329876835897525
 MonoBehaviour:
   m_ObjectHideFlags: 0

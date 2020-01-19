@@ -205,7 +205,7 @@ public class PointerSystem : FSystem {
 								}
 
 								if (ui.text != null) {
-									ui.text.text = infos.myName;
+									ui.text.text = infos.myName.Replace("\\n", "\n"); ;
 								}
 
 								if (ui.description != null) {
@@ -217,11 +217,11 @@ public class PointerSystem : FSystem {
 
 									Predator predator = collideGO.GetComponent<Predator>();
 									if (predator != null)
-										sb.AppendLine("Targets : " + string.Join(" / ", predator.myPreys));
+										sb.AppendLine("Targets : " + string.Join(" / ", predator.myPreys) + "\n");
 
 									sb.AppendLine(infos.myDescription);
 
-									ui.description.text = sb.ToString();
+									ui.description.text = sb.ToString().Replace("\\n", "\n"); ;
 
 									RectTransform rtInfoPanel = (RectTransform) ui.gameObject.transform;
 									RectTransform rtDescriptionText = (RectTransform) ui.description.GetComponent<ContentSizeFitter>().transform;
@@ -231,6 +231,18 @@ public class PointerSystem : FSystem {
 
 									rtDescriptionText.anchoredPosition = new Vector2(rtDescriptionText.anchoredPosition.x, posy);
 									rtInfoPanel.sizeDelta = new Vector2(rtInfoPanel.sizeDelta.x, rtDescriptionText.rect.height);
+								}
+
+								if (ui.button != null) {
+									ui.button.onClick.RemoveAllListeners();
+									ButtonSystem_wrapper b = Object.FindObjectOfType<ButtonSystem_wrapper>();
+
+									if (infos.moreInfoUrl != null && infos.moreInfoUrl != "" && b != null) {
+										ui.button.onClick.AddListener(delegate{ b.openURL(infos.moreInfoUrl); });
+										GameObjectManager.setGameObjectState(ui.button.gameObject, true);
+									} else {
+										GameObjectManager.setGameObjectState(ui.button.gameObject, false);
+									}
 								}
 							}
 						}

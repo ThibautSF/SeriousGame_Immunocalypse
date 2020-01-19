@@ -203,7 +203,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myName: Virus B
-  myDescription: 
+  myDescription: "Un virus est une particule microscopique infectieuse qui ne peut
+    se r\xE9pliquer qu'en p\xE9n\xE9trant dans une cellule et en utilisant sa machinerie
+    cellulaire. Les virus qui infectent les bact\xE9ries sont les bact\xE9riophages.\\nIl
+    existe des virus qui infectent des animaux et d'autres qui infectent les v\xE9g\xE9taux.
+    S'ils provoquent des maladies, les virus peuvent \xEAtre consid\xE9r\xE9s comme
+    des germes pathog\xE8nes.\\n\\nCeci est une description adapt\xE9 \xE0 un autre
+    virus par exemple pour d\xE9crire deux virus diff\xE9rents."
 --- !u!114 &5877999227497477321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,6 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a29b68e4342c0b1d390d7dc0f41a30e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passive: 0
   myPreys:
   - Cell
 --- !u!114 &1738780105404642411

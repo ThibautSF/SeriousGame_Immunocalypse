@@ -338,7 +338,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -380,6 +380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 3252587416035267180}
   text: {fileID: 58396143524041540}
+  description: {fileID: 0}
   prefab: {fileID: 0}
 --- !u!114 &1210022539027748273
 MonoBehaviour:

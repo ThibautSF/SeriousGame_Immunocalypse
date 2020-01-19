@@ -8,7 +8,6 @@ public class LevelSystem : FSystem {
 	private bool levelInit = false;
 	private string levelStatus = "Pending";
 	private bool gamePaused = false;
-	private int framePause = -1;
 
 	private Family _mapSpawnerGO = FamilyManager.getFamily(
 		new AllOfComponents(typeof(MapLayer), typeof(Factory))
@@ -122,7 +121,7 @@ public class LevelSystem : FSystem {
 					ui.image.sprite = sr.sprite;
 					ui.image.color = sr.color;
 
-					ui.text.text = info.myName;
+					ui.text.text = info.myName.Replace("\\n", "\n"); ;
 					if(buyable != null)
 						ui.text.text += "\nCost : " + buyable.energyPrice.ToString("F0") + " energy";
 
@@ -295,20 +294,48 @@ public class LevelSystem : FSystem {
 			}
 		}
 
-		switch (levelStatus) {
-			case "Victory":
-				Debug.Log(levelStatus);
-				//TODO
-				break;
+		GameObject playerGO = _playerGO.First();
+		if (playerGO != null) {
+			Player player = playerGO.GetComponent<Player>();
 
-			case "Defeat":
-				Debug.Log(levelStatus);
-				//TODO
-				break;
+			string title, descr;
+			switch (levelStatus) {
+				case "Victory":
+					title = "Victoire !";
+					descr = "Vous avez réussi à vous protéger de la menace pathogène.";
+					endGame(player, title, descr);
+					break;
 
-			case "Pending":
-			default:
-				break;
+				case "Defeat":
+					title = "Défaite.";
+					descr = "La menace pathogène s'est trop répandue et est maintenant hors de contrôle.";
+					endGame(player, title, descr);
+					break;
+
+				case "Pending":
+				default:
+					break;
+			}
+		}
+	}
+
+	private void endGame(Player p, string title, string description) {
+		UIUnit ui = p.endScreen.gameObject.GetComponent<UIUnit>();
+
+		if (ui.text != null) {
+			ui.text.text = title;
+		}
+
+		if (ui.description != null) {
+			ui.description.text = description;
+		}
+
+		ButtonSystem_wrapper b = Object.FindObjectOfType<ButtonSystem_wrapper>();
+		if (b != null)
+			b.showHide(p.endScreen);
+
+		foreach (FSystem system in SystemHolder.pausableSystems) {
+			system.Pause = true;
 		}
 	}
 }

@@ -8,5 +8,6 @@ public class UIUnit : MonoBehaviour {
 	public Image image;
 	public Text text;
 	public Text description;
+	public Button button;
 	public GameObject prefab;
 }
