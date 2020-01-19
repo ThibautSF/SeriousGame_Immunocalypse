@@ -369,6 +369,7 @@ MonoBehaviour:
     existe des virus qui infectent des animaux et d'autres qui infectent les v\xE9g\xE9taux.
     S'ils provoquent des maladies, les virus peuvent \xEAtre consid\xE9r\xE9s comme
     des germes pathog\xE8nes."
+  moreInfoUrl: 
 --- !u!114 &5512738094473992359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,7 +444,7 @@ MonoBehaviour:
   timeSinceLastEffect: 1
   effectFreq: 1
   infectOnKill: 1
-  timerFactory: 5
+  timerFactory: 10
   newPreyTag: Infected Cell
   applyColor: 1
   color: {r: 0, g: 1, b: 0.48235294, a: 1}

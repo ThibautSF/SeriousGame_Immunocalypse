@@ -9,19 +9,9 @@ public class ButtonSystem_wrapper : MonoBehaviour
 		this.hideFlags = HideFlags.HideInInspector; // Hide this component in Inspector
 	}
 
-	public void openPlayMenu()
+	public void openMenu(System.String name)
 	{
-		MainLoop.callAppropriateSystemMethod ("ButtonSystem", "openPlayMenu", null);
-	}
-
-	public void openCreditsMenu()
-	{
-		MainLoop.callAppropriateSystemMethod ("ButtonSystem", "openCreditsMenu", null);
-	}
-
-	public void backToMainMenu()
-	{
-		MainLoop.callAppropriateSystemMethod ("ButtonSystem", "backToMainMenu", null);
+		MainLoop.callAppropriateSystemMethod ("ButtonSystem", "openMenu", name);
 	}
 
 	public void exitGame()

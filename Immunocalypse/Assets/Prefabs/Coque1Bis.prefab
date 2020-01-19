@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8027934047202212361}
   - component: {fileID: 5314205398285808211}
   - component: {fileID: 2810551652078060430}
+  - component: {fileID: -622265056887683573}
   - component: {fileID: 8525860318542719584}
   - component: {fileID: 8182146954191954275}
   - component: {fileID: 5513485430861027097}
@@ -79,6 +80,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.18
+--- !u!58 &-622265056887683573
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556192119056853604}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.18
 --- !u!114 &8525860318542719584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,6 +118,7 @@ MonoBehaviour:
     \xE0 ceux observ\xE9s lors d'une infection virale (\xE9ruption cutan\xE9e, toux,
     \xE9coulement nasal, larmoiement, fatigue, naus\xE9es, fi\xE8vre et douleurs musculaires).
     Parfois, elles sont mortelles."
+  moreInfoUrl: 
 --- !u!114 &8182146954191954275
 MonoBehaviour:
   m_ObjectHideFlags: 0

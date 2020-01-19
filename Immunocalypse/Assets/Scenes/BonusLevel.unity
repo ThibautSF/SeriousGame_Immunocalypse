@@ -15887,9 +15887,7 @@ MonoBehaviour:
     type: 3}
   spawnArea: {fileID: 445260596}
   levelBuyablePrefabs:
-  - {fileID: 1836106904873615764, guid: f3b68059d01429db696cf811bf68a67b, type: 3}
-  - {fileID: 8952695840164657680, guid: fb0b80d35f11620c3a5222598a3def60, type: 3}
-  - {fileID: 2792561629115431662, guid: 881d40000158c03fc9ef3567340bd559, type: 3}
+  - {fileID: 911852148451292636, guid: f3df1e06a29a1535eb800b276090dc0e, type: 3}
 --- !u!114 &1135910940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15939,12 +15937,12 @@ MonoBehaviour:
   waves:
   - groups:
     - nbSpawn: 1
-      prefab: {fileID: 5828499375310798995, guid: 38ee6858026e03854b792cdc22482a52,
+      prefab: {fileID: 6156270228108602061, guid: dd7ecf0ebebe3eca4a74eb1023a88fd9,
         type: 3}
     timeBeforeNext: 30
   - groups:
     - nbSpawn: 2
-      prefab: {fileID: 5828499375310798995, guid: 38ee6858026e03854b792cdc22482a52,
+      prefab: {fileID: 6156270228108602061, guid: dd7ecf0ebebe3eca4a74eb1023a88fd9,
         type: 3}
     timeBeforeNext: 0
   currentWave: 0

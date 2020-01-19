@@ -31,16 +31,8 @@ public class ButtonSystem : FSystem {
 		}
 	}
 
-	public void openPlayMenu() {
-		changeActiveMenus("playMenu");
-	}
-
-	public void openCreditsMenu() {
-		changeActiveMenus("creditsMenu");
-	}
-
-	public void backToMainMenu() {
-		changeActiveMenus("MainMenu");
+	public void openMenu(string name) {
+		changeActiveMenus(name);
 	}
 
 	public void exitGame() {
@@ -73,7 +65,8 @@ public class ButtonSystem : FSystem {
 	public void modInfo(Canvas canvas) {
 		Texture2D cursor;
 
-		if (canvas.gameObject.activeSelf)
+		//boolean negation due to FYFY activating the GO only next iteration ('showHide' should be called before)
+		if (!canvas.gameObject.activeSelf)
 			cursor = Resources.Load<Texture2D>("Pixel Cursors/Cursors/Bonus_50");
 		else
 			cursor = Resources.Load<Texture2D>("Pixel Cursors/Cursors/basic_01");

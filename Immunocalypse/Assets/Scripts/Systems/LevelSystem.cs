@@ -3,6 +3,7 @@ using UnityEngine.Tilemaps;
 using FYFY;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 
 public class LevelSystem : FSystem {
 	private bool levelInit = false;
@@ -262,11 +263,32 @@ public class LevelSystem : FSystem {
 						}
 					}
 
+					
+
 					//Destroy level wave factory if last wave was released (for victory condition)
 					if (factory.currentWave >= factory.waves.Count) {
+						if (factory.waveIndicator != null) {
+							StringBuilder sb = new StringBuilder();
+
+							sb.AppendLine("Wave : " + factory.currentWave + " / " +factory.waves.Count);
+							sb.AppendLine("Final Wave");
+
+							factory.waveIndicator.text = sb.ToString();
+						}
+
 						GameObjectManager.removeComponent<FactoryLevel>(go);
 						//GameObjectManager.unbind(go);
 						//Object.Destroy(go);
+					} else {
+						if (factory.waveIndicator != null) {
+							StringBuilder sb = new StringBuilder();
+
+							sb.AppendLine("Wave : " + factory.currentWave + " / " +factory.waves.Count);
+							float time = factory.reloadTime - factory.reloadProgress;
+							sb.AppendLine("Time remain : " + time.ToString("F0"));
+
+							factory.waveIndicator.text = sb.ToString();
+						}
 					}
 				}
 			}

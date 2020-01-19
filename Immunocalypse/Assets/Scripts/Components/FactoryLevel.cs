@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 
 /// <summary>
@@ -10,6 +11,7 @@ using UnityEngine.Tilemaps;
 /// Allow to generate waves of units
 /// </remarks>
 public class FactoryLevel : MonoBehaviour {
+	public Text waveIndicator;
 	public Tilemap spawnArea;
 	public Tilemap spawnTargetArea;
 	public float reloadTime = 1f;
