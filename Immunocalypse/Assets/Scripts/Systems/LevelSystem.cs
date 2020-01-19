@@ -45,6 +45,7 @@ public class LevelSystem : FSystem {
 	}
 
 	protected override void onPause(int currentFrame) {
+		/*
 		switch (gamePaused) {
 			case true:
 				break;
@@ -57,11 +58,14 @@ public class LevelSystem : FSystem {
 		}
 
 		this.Pause = false;
+		*/
 	}
 
 	protected override void onResume(int currentFrame) {
+		/*
 		if (framePause != currentFrame)
 			gamePaused = false;
+		*/
 	}
 
 	// Use to process your families.

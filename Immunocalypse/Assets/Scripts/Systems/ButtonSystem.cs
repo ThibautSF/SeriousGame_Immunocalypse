@@ -51,17 +51,22 @@ public class ButtonSystem : FSystem {
 		GameObjectManager.loadScene(levelName);
 	}
 
-	public void pauseResumeGame() {
+	public void pauseResumeGame(Canvas canvas) {
+		bool status = false;
 		foreach (FSystem system in SystemHolder.pausableSystems) {
 			system.Pause = !system.Pause;
+			status = system.Pause;
 		}
+
+		if (canvas != null)
+			canvas.gameObject.SetActive(status);
 	}
 
 	public void showHide(Canvas canvas) {
 		canvas.gameObject.SetActive(!canvas.gameObject.activeSelf);
 	}
 
-	public void modInfo (Canvas canvas) {
+	public void modInfo(Canvas canvas) {
 		Texture2D cursor;
 
 		if (canvas.gameObject.activeSelf)
@@ -70,5 +75,16 @@ public class ButtonSystem : FSystem {
 			cursor = Resources.Load<Texture2D>("Pixel Cursors/Cursors/basic_01");
 
 		Cursor.SetCursor(cursor, new Vector2(10, 5), CursorMode.Auto);
+	}
+
+	public void openURL(string url) {
+		// TODO (if it was not useless for this project) : check url
+		if (url != "") {
+			foreach (FSystem system in SystemHolder.pausableSystems) {
+				system.Pause = true;
+			}
+
+			Application.OpenURL(url);
+		}
 	}
 }
