@@ -15912,7 +15912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fecd771e44408ba0689e3e05dea6063f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEnergyPoints: 10000
+  maxEnergyPoints: 1000
   energyPoints: 8000
   myUI:
     mySlider: {fileID: 2428522}
@@ -22271,7 +22271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.09803922}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

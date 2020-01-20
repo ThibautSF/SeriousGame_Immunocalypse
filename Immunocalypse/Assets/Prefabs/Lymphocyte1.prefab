@@ -254,6 +254,7 @@ MonoBehaviour:
   myDescription: "Les lymphocytes jouent un r\xF4le central dans le syst\xE8me immunitaire,
     c'est pourquoi leur taux sanguin augmente lors des infections.\\nLes lymphocytes
     B sont responsables de la production des anticorps, ou immunit\xE9 humorale."
+  moreInfoUrl: https://fr.wikipedia.org/wiki/Lymphocyte#Lymphocyte_B
 --- !u!114 &2596167432376935937
 MonoBehaviour:
   m_ObjectHideFlags: 0

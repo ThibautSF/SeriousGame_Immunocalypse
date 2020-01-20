@@ -194,8 +194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4adf594e9fda15a55ad0713773912150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recoverPoints: 10
-  reloadTime: 2
+  recoverPoints: 5
+  reloadTime: 1
   reloadProgress: 0
 --- !u!1 &8350788484166585692
 GameObject:

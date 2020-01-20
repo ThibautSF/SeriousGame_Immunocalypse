@@ -248,8 +248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59bbb14d0083db76b8ca82bf257ba1f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeSinceLastEffect: 1
-  effectFreq: 0
+  timeSinceLastEffect: 0
+  effectFreq: -1
 --- !u!114 &5573377863912184143
 MonoBehaviour:
   m_ObjectHideFlags: 0

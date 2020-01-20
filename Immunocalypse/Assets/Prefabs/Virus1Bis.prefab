@@ -478,7 +478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4adf594e9fda15a55ad0713773912150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recoverPoints: -1
+  recoverPoints: -0.5
   reloadTime: 1
   reloadProgress: 0
 --- !u!1 &2451809332738842061
